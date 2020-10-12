@@ -1,0 +1,34 @@
+h1, h3{
+	display: flex;
+	justify-content: flex-start;
+}
+
+h1{
+	font-size: 20px;
+}
+h3{
+	font-size: 15px;
+}
+.presentation p{
+	display: grid;
+	grid-template:300px/300px;
+}
+
+.layout{
+	display:grid;
+	grid-template-row:20% 20%;
+	grid-template-column:300px 300px;
+	grid-gap:10%;
+}
+
+.code{
+	grid-column-start:1;
+	background-color: lightblue;
+}
+
+.fusee{
+	grid-column-start:2;
+	background-color: lightblue;
+
+}
+
