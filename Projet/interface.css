@@ -14,21 +14,4 @@ h3{
 	grid-template:300px/300px;
 }
 
-.layout{
-	display:grid;
-	grid-template-row:20% 20%;
-	grid-template-column:300px 300px;
-	grid-gap:10%;
-}
-
-.code{
-	grid-column-start:1;
-	background-color: lightblue;
-}
-
-.fusee{
-	grid-column-start:2;
-	background-color: lightblue;
-
-}
 
