@@ -10,3 +10,5 @@ endScreen.addEventListener('click', () => {
     , 1000);
   });
   
+//[sarah]Message d'accueil//
+onload="alert("Bienvenue sur Apollo, le jeu qui vous permettera d'apprendre l'algorithmie de manière amusante et ludique! Vous utiliserez des balises dont le fonctionnement vous sera expliqué au fur et à mesure de votre avancement dans le jeu");"
