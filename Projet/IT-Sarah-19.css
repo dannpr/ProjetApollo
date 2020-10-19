@@ -33,11 +33,17 @@ p{
 	width:100%;
 }
 
+.commande{
+	display=flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	width:50%;
+}
 #fusee{
 	cursor=crosshair ;
 	background: url(https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg) no-repeat center center; 
 	border: solid white;
-	width:500px;
+	width:10%;
 	height:500px;
 
 }
@@ -45,7 +51,7 @@ p{
 .zone2{
 	background-color: rgb(31, 54, 88) ;
 	border: solid white ;
-	width:300px;
+	width:40%;
 	height:500px;
 
 
