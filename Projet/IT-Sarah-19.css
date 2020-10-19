@@ -25,31 +25,36 @@ p{
 #endScreen {
 	
  }
+
+.conteneur{
+	display: flex;
+	flex-direction: row;
+	flex-wrap:wrap;
+	width:100%;
+}
+
 #fusee{
 	cursor=crosshair ;
 	background: url(https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg) no-repeat center center; 
-	border:5px solid white;
+	border: solid white;
 	width:500px;
 	height:500px;
-	margin-top:20px;
-	display:flex;
-	justify-content: flex-end;
+
 }
+
 .zone2{
 	background-color: rgb(31, 54, 88) ;
-	border:5px solid white ;
+	border: solid white ;
 	width:300px;
 	height:500px;
-	margin-top:20px;
-	display: flex;
-	align-item: center;
+
+
+	
 }
 
 .Zone3{
 	background-color: rgb(149, 185, 240); 
-	border:5px solid white ;
-	width:400px;
+	border: solid white ;
+	width:500px;
 	height:500px;
-	margin-top:20px;
 }
-
