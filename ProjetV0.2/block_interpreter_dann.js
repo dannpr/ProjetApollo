@@ -43,7 +43,7 @@ function compile(/*action_user*/) {
   //parcours du tableau et execution du dico
 
   user_actions.forEach((user_action) => {//trad : pour chaque element de la liste d'action ( qui peu etre une liste de dico )
-    if(typeof user_action == 'object'){//si le type de user_action c'est un objet on "rentre" dans l'action et on dans params
+    if(typeof user_action == 'object'){/*si le type de user_action c'est un objet on "rentre" dans l'action et on dans params*/
       action[user_action.nom](user_action.params);
     }
     else{
