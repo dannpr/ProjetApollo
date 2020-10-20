@@ -1,0 +1,26 @@
+.grid{
+  display:grid;
+  grid-template: "gestion menu" 400px
+                 "gestion compil" 100px
+                 /3fr 1fr
+  }
+
+zone{
+  background-color: grey;
+  grid-area: gestion;
+  margin:5px;
+}
+
+menu{
+  background-color: blue;
+  grid-area: menu;
+  margin:5px;
+}
+
+comp{
+  background-color: black;
+  grid-area: compil;
+  margin:5px;
+  padding:20%;
+
+}
