@@ -1,3 +1,4 @@
+/*
 //exemple de blocs :
 ["while(","a==0","){"]
 ["avancer();"]
@@ -11,27 +12,52 @@ var order = [1,2,3,4,-2,-1];
 
 //il suffit de faire une fonction qui renvoie ça a partir de ce qu'on a en haut :
 "while(a==0){avancer();if(true){avancer()}}"
+*/
 
-//à faire :
-function new_block(value){
-  /*création d'un nouveau bloc
-    gestion des types de blocks (while, for, if, function)
-    retourne l'identifiant du bloc*/
+//variables globales :
+var order=[];//liste de l'ordre dans lequel les blocks seront exécutés
+var blocks={count:0};//dictionaire contenant les instructions pour chaque bloc
+
+function new_block(value){// TODO: add value = ifelse
+  /*STR value.
+    Ajoute un block au dictionaire 'blocks'
+    Retourne l'identifiant du bloc*/
+  id=blocks.count;
+  blocks.count++;
+  switch (value) {
+    case "while"://si c'est une boucle while
+      blocks[id] = ["while(","false","){"]; //ex: ["while(","false","){"]
+      break;
+    case "if":
+      blocks[id] = ["if(","false","){"]; //ex: ["if(","false","){"]
+      break;
+    case "for"://si c'est une boucle for
+      blocks[id] = ["for(int iterator"+id+"=0;iterator"+id+"<",0,";iterator"+id+"++){"]
+      //ex: ["for(int int iterator0=0;iterator0<",0,";iterator++){"]
+      break;
+    default://si c'est juste une fonction
+      blocks[id] = [value+"();"]; //ex: ["avancer();"]
+  }
   return id;
 }
 function insert(bloc, pos) {
   /*insere un bloc après un autre*/
+  // TODO
 }
-function remove(id) {
+function pop(id) {// QUESTION: comment les while, for et if doivent ils être supprimés ?
   /*enleve un bloc déjà créé de la liste order,
     le bloc existe toujours et peut être réinséré*/
+    // TODO:
 }
-function delete(id) {
-  /*supprime completement un bloc qui est déjà créé
-    libere une place dans le dictionaire
-    enleve ce bloc de la liste order*/
+function remove(id) {
+  /*INT id
+    supprime completement un bloc qui est déjà créé
+    enleve ce bloc de la liste order
+    libere une place dans le dictionaire*/
+  remove(id);
+  delete(blocks[id]);
 }
 function compile(blocdict, order) {
   /*renvoie une chaine de caractere correspondant a du code js*/
+  // TODO
 }
-eval(compile(blocdict,order))//devrait executer le code et faire bouger la fusée
