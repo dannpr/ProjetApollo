@@ -1,0 +1,117 @@
+<!--POSSIBILITE 1
+possibilité d'utiliser la balise canvas pour cela tu foid utiliser la fonction draw image qui dessine l'image.
+Je trouve aps efficace de dessiner l'image a chaque mise a jour-->
+	
+<!--POSSIBILITE 2
+-Possiblité d'utiliser la balise div il faudra definir la position de l'image maios je ne sais pas s'il ya une qui pourra le faire.
+Je vais utiliser du CSS pour les positions	
+J'ai vu une fonction interessante pour le deplacement de la fusée
+Pb:je vois pas comment faire pour detecter une collision ?-->
+
+			<!--En html-->
+<div class="conteneur">
+		<div class="animation">
+			<img id="fusee" src="https://image.freepik.com/vecteurs-libre/fusee-dessin-anime-3d_97886-2800.jpg" alt="fusée">
+			<img id="meteorite" src="https://pbs.twimg.com/media/EPuW0omWsAAGPsF.jpg" alt="meteorite">
+		</div>
+
+	<div class="commande">
+	
+	<div class="zone2"> Zone des balises </div>
+	
+	<div class="zone3"> Zone de compilation des balises </div>
+	
+	</div>
+
+	</div>
+<head>
+
+			<!--En CSS-->
+
+#fusee{
+	width:50px;
+	height:50px;
+	position:relative;
+	left:40%;
+	top:400px;
+	
+}
+
+#meteorite{
+	width:80px;
+	height:90px;
+	position:relative;	
+	left:0px;
+	top:100px;
+
+}
+			<!--Exemple pour le JS-->
+<SCRIPT LANGUAGE=JavaScript>
+ 
+function bougeauto2()
+    {
+    if(document.getElementById)
+        {for(compteur=1;compteur<400;compteur++){
+        hautimage ++;
+        gaucheimage ++;
+        document.getElementById("smile").style.top = hautimage;
+        document.getElementById("smile").style.left = gaucheimage;
+ 
+                                                }
+        }
+     }
+ 
+</SCRIPT>
+ 
+ 
+</SCRIPT>
+</HEAD>
+<Body>
+ 
+<SCRIPT LANGUAGE="javascript">
+var hautimage = 100;
+var gaucheimage = 100;
+document.write('<IMG SRC="Nénuphars.jpg" height=100  width=150 ID=smile STYLE="position:absolute;top:'+hautimage+';left:'+gaucheimage+'">');
+</SCRIPT>
+</body>
+
+
+<!--POSSIBILITE 3>	
+-Possibilité d'utiliser un grid en CSS
+mais je ne vois pas comment modifier les coordonnees*/-->
+
+		<!--En CSS-->
+
+.animation{
+	display:grid;
+	grid-template:repeat(20,25px)/repeat(20,20px);
+	/*cursor=crosshair ;*/
+	background: url(https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg)no-repeat center center; 
+	width:400px;
+	height:500px;
+
+}
+
+
+
+#fusee{
+	width:50px;
+	height:50px;
+	grid-area:19/9;
+}
+
+#meteorite{
+	width:80px;
+	height:90px;
+	grid-area:1/15;
+}
+
+<!--
+
+/* balise trouvee interressante mais qui n'est pas en lien avec notre travail
+	form,imagemap,sticky*/
+
+-->
+
+
+
