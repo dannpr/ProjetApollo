@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="grid.css" rel="stylesheet" type="text/css">
+  <title>Test</title>
+</head>
+<body>
+  <div class="grid">
+    <zone class="zonedepot">
+      <h1 style="text-align:center">Zone de Dépot</h1>
+      <hr size="4" color="black"/>
+    </zone>
+    <menu id="menu">
+      <h1>Menu</h1>
+      <div class="shadowbox">
+        <button name="Balise1" class="balise" draggable="true" >Avancer</button>
+      </div>
+      <div class="shadowbox">
+        <button  name="Balise2" class="balise" draggable="true">Tourner à gauche</button>
+      </div>
+      <div class="shadowbox">
+        <button name="Balise3" class="balise" draggable="true">Tourner à droite</button>
+      </div>
+      <div class="shadowbox">
+        <button name="Balise4" class="balise" draggable="true">Boucle</button>
+      </div>
+    </menu>
+    <comp align-item="center">
+      <input type="button" value="Compiler">
+    </comp>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
