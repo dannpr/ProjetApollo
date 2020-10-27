@@ -1,0 +1,42 @@
+/* informations sur l'obstacle meteorite */
+var xm=112;
+var ym=90;
+var wm=80;
+var hm=90;
+
+/*informations sur la fusée*/
+var xf=180;
+var yf=400;
+var wf=40;
+var hf=50;
+
+
+/*function explosion(yf){ 
+	if((yf>80) && (yf<0)){
+		explos.style.visibility ="visible";
+		fuse.style.visibility="hidden";
+		meteor.style.visibility="hidden";
+	}
+}*/
+
+	
+function avancer()
+{
+
+  //soustraction de la position en px
+  yf-=20;//nombre de px peu etre 10 ou 20 
+  if(document.getElementById("fusee"))
+	{
+	/*if((yf>80) && (yf<140)){
+		document.getEmementById("explosion").style.visibility=visible;
+		document.getElementById("fusee").style.visibility=hidden;
+		document.getElementbyId("meteorite").style.visibility=hidden;
+	}*/
+    document.getElementById("fusee").style.top = yf +"px";
+	document.getElementById("explosion").style.top = yf +"px";
+	
+    console.log(xf); //test pour voir le pixel top de la fusee non obligatoire
+
+	}
+		alert(yf);
+}
