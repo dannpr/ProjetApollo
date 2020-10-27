@@ -1,63 +1,68 @@
-/*
-//exemple de blocs :
-["while(","a==0","){"]
-["avancer();"]
-["if(","true","){"]
-
-//les blocs seront arangés dans des dictionaires, exemple:
-var blocdict = {1:["while(","a==0","){"], 2:["avancer();"], 3:["if(","true","){"], 4:["avancer();"], length:4};
-
-//pour connaitre l'ordre des blocs, on fait appel a une liste qui les ordonne. Un chiffre négatif représente une fin de bloc, exemple :
-var order = [1,2,3,4,-2,-1];
-
-//il suffit de faire une fonction qui renvoie ça a partir de ce qu'on a en haut :
-"while(a==0){avancer();if(true){avancer()}}"
+//pour éviter tout conflict avec d'autres fichier, toutefonction ou variable globale sera de la forme BI_nom
+/*exemple de blocs :
+    -bloc simples       ["avancer"]
+    -bloc imbricable    ["while",bloc_condition,liste_de_blocs]
 */
+//addin (seulement sur les bloc imbricables)
+//addafter (soit bloc simples ou soit sur le vide)
 
 //variables globales :
-var order=[];//liste de l'ordre dans lequel les blocks seront exécutés
-var blocks={count:0};//dictionaire contenant les instructions pour chaque bloc
+var BI_blocklist;
+var BI_count;
+BI_reset();//initialise les variables
 
-function new_block(value){// TODO: add value = ifelse
-  /*STR value.
-    Ajoute un block au dictionaire 'blocks'
-    Retourne l'identifiant du bloc*/
-  id=blocks.count;
-  blocks.count++;
-  switch (value) {
-    case "while"://si c'est une boucle while
-      blocks[id] = ["while(","false","){"]; //ex: ["while(","false","){"]
-      break;
-    case "if":
-      blocks[id] = ["if(","false","){"]; //ex: ["if(","false","){"]
-      break;
-    case "for"://si c'est une boucle for
-      blocks[id] = ["for(int iterator"+id+"=0;iterator"+id+"<",0,";iterator"+id+"++){"]
-      //ex: ["for(int int iterator0=0;iterator0<",0,";iterator++){"]
-      break;
-    default://si c'est juste une fonction
-      blocks[id] = [value+"();"]; //ex: ["avancer();"]
-  }
+function BI_newblock(name){
+  /*STR -> int
+    crée un bloc et retourne son identifiant.*/
+  var id = BI_count;
+  BI_count++;
+  // TODO:
+
   return id;
 }
-function insert(bloc, pos) {
-  /*insere un bloc après un autre*/
-  // TODO
+function BI_addafter(bloc, id){
+  /*BLOC * int -> int
+    ajoute un bloc après le bloc indiqué
+    retourne l'id du bloc ajouté*/
+    // NOTE: BI_blocklist.splice(n, 0, bloc); insere bloc a la position n
+    // NOTE: attention au imbrications
+    // TODO
 }
-function pop(id) {// QUESTION: comment les while, for et if doivent ils être supprimés ?
-  /*enleve un bloc déjà créé de la liste order,
-    le bloc existe toujours et peut être réinséré*/
+function BI_addin(bloc, id){
+  /*BLOC * int -> int
+    ajoute un bloc **en dernierre position** a l'interieur du bloc indiqué
+    retourne l'id du bloc ajouté*/
+    // NOTE: BI_blocklist.splice(n, 0, bloc); insere bloc a la position n
+    // NOTE: attention au imbrications
+    // TODO:
+
+}
+
+function BI_add(name,id){
+  /*STR * int -> int
+    synthèse des 3 fonctions précédentes
+    créé un nouveau bloc
+    détermine automatiquement si il faut utiliser BI_addin ou BI_addafter
+    retourne l'identifiant du bloc créé*/
+}
+
+function BI_move(id,newpos){
+  /*int * int -> void
+    change un bloc de place*/
     // TODO:
 }
-function remove(id) {
-  /*INT id
-    supprime completement un bloc qui est déjà créé
-    enleve ce bloc de la liste order
-    libere une place dans le dictionaire*/
-  remove(id);
-  delete(blocks[id]);
+
+function BI_reset(){
+  /*remet la liste a 0 (quand vide l'écran)*/
+  BI_count=0;
+  BI_blocklist = [];
 }
-function compile(blocdict, order) {
-  /*renvoie une chaine de caractere correspondant a du code js*/
-  // TODO
+
+
+
+function BI_runcode(){
+  /*traduit la liste de bloc en JS et interprette le code obtenu*/
+  // NOTE: doit prendre en compte les différents types de blocs
+  // TODO:
+
 }
