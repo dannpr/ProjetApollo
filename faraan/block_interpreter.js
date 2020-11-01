@@ -52,6 +52,12 @@ function BI_move(id,newpos){
     // TODO:
 }
 
+function BI_remove(id){
+  /*int -> void
+    supprime un bloc*/
+  // TODO: 
+}
+
 function BI_reset(){
   /*remet la liste a 0 (quand vide l'écran)*/
   BI_count=0;
