@@ -7,7 +7,7 @@ baliseAll.forEach(balise =>{
 });
 
 
-  function dragStart(event){
+function dragStart(event){
     console.log("dragstart");
     event.dataTransfer.setData("text", event.target.name);
     this.className+='tenu';
@@ -58,5 +58,43 @@ function dragDrop(event){
   if(balise==='Balise4')
     event.target.insertAdjacentHTML("beforeend", '<div><button class="balise" draggable="true">Boucle</button></div>');
   this.className='zonedepot';
-
 }
+
+// SUPPRESSION d'un block 
+const deleteBox = document.querySelector('.delete');
+
+
+// ajout de l'évènement quand on CLIQUE sur le bouton supprimer
+
+deleteBox.addEventListener('click', () => {
+  // Selection de tous les block présents dans la zone depot
+  const blocks = document.querySelectorAll('ul button.balise');
+  // parcours tous les block pour leur ajouter l'écouteur d'évènement onclick et le supprimer quand il est déclenché
+  
+  blocks.forEach(e => {
+    e.addEventListener('click', e.remove);
+    e.stopPropagation();
+  })
+
+});
+
+/*création d'un écouteur de CLAVIER pour supprimer
+une balise avec la touche delete
+
+        selection des balises dans la zone dépôt
+        const blocksList = document.querySelectorAll('ul button.balise');
+
+        blocksList.forEach(e => {
+        blocks.forEach(e => {
+                //e.addEventListener('click', deleteb(e));
+                //e.stopPropagation();
+        })
+        function delete(b){
+            b.addEventListener("keydown", keyDown())
+        }
+
+        le joueur clique sur un block à supprimer 
+        le joueur presse la touche delete de son clavier*/
+
+
+

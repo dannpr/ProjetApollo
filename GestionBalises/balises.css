@@ -58,3 +58,21 @@ comp{
   padding:5px 5px;
   cursor: move;
 }
+
+.delete{
+  background:white;
+  display:block;
+  color:blue;
+  font-weight:bold;
+  height:30px;
+  line-height:29px;
+  margin-bottom:14px;
+  text-decoration:none;
+  width:191px;
+}
+.croix{
+  background:url(delete.gif) no-repeat 10px 8px;
+  text-indent:30px;
+  display:block;
+}
+
