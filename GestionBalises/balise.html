@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Tests</title>
+  <meta charset="utf-8">
+  <link href="app.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="grid">
+    <zone>
+      <h1 style="text-align:center">Zone de Dépot</h1>
+      <hr class="depart" size="4" color="black"/>
+      <div id="depot" class="zonedepot"></div>
+    </zone>
+    <menu id="menu">
+        <h1>Menu</h1>
+        <div>
+          <button name="Avancer" class="balise" draggable="true" title="Fait avancer la fusée d'une case" >Avancer</button>
+        </div>
+        <div>
+          <button  name="Tourner à gauche" class="balise" draggable="true" title="Fait pivoter la fusée vers la gauche">Tourner à gauche</button>
+        </div>
+        <div>
+          <button name="Tourner à droite" class="balise" draggable="true" title="Fait pivoter la fusée vers la droite">Tourner à droite</button>
+        </div>
+      </menu>
+      <comp  style="padding-left:25px">
+        <input class="compil" type="button" value="Compiler">
+        <input class="init" type="button" value="Réinitialiser">
+        <input class="gomme" type="button" value="Gomme">
+      </comp>
+  </div>
+  <script src="app.js"></script>
+  <script src="app_deplacement.js"></script>
+</body>
+</html>
