@@ -1,0 +1,66 @@
+<html>
+
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <title>Apollo</title>
+         <link rel="stylesheet" href="Apollo.css">
+
+
+        <!-- bannière du site-->
+         <header>
+             <h1>APOLLO</h1>
+             <h3>I'm not lost, i'm exploring!</h3>
+         </header>
+     </head>
+  
+    <body>
+        <p> <b>Bienvenue sur Apollo, le jeu qui vous permettera d'apprendre l'algorithmie de manière amusante et ludique! Vous utiliserez des balises dont le fonctionnement vous sera expliqué au fur et à mesure de votre avancement dans le jeu</b>.</p>
+        <div class="conteneur">
+          <!-- Zone de la FUSEE-->
+     	    <div class="animation">
+	        	 <img id="fusee" src="fusee.png" alt="fusée">
+		         <img id="meteorite" src="meteor.png" alt="meteorite">
+	        </div>
+	        <div class="commande">
+                  <!--  ZONE 2 -->
+                <div class="zone2">  
+                     <zone>
+                        <h1 style="text-align:center">Zone de Dépot</h1>
+                        <hr class="depart" size="4" color="black"/>
+                        <div id="depot" class="zonedepot"></div>
+                    </zone>
+                    <menu id="menu">      
+                        <h1>Menu</h1>
+                        <div>
+                            <button name="Avancer" class="balise" draggable="true" title="Fait avancer la fusée d'une case" >Avancer</button>
+                    </div>
+                    <div>
+                        <button  name="Tourner à gauche" class="balise" draggable="true" title="Fait pivoter la fusée vers la gauche">Tourner à gauche</button>
+                    </div>
+                    <div>
+                        <button name="Tourner à droite" class="balise" draggable="true" title="Fait pivoter la fusée vers la droite">Tourner à droite</button>
+                    </div>
+                    </menu> 
+                    <comp  style="padding-left:30px">
+                        <input class="compil" type="button" value="Compiler">
+                        <input class="init" type="button" value="Réinitialiser">
+                        <input class="gomme" type="button" value="Gomme">
+                    </comp>
+                </div>
+                 <!--  Pour tester si avancer marche , n'oubliez pas d'activer la partie css de la Zone3
+                <div class="zone3"> Zone de compilation des balises
+                     <button onclick="avancer()">avancer </button>   Pour tester si avancer marche 
+                </div> -->
+                  
+            </div>     
+	    </div>
+
+
+    
+        <script src="Apollo.js" type="text/javascript" ></script>
+
+    </body>
+
+</html>
