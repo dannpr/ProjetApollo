@@ -38,7 +38,7 @@ function BI_bloctojavascript(buffer) {
     if (!(
       matchwith("<Avancer>", "avancer();") ||
       matchwith("<Tourner à gauche>", "tourneragauche();") ||
-      matchwith("<Tourner à droite>", "tourneradroite();") ||
+      matchwith("<Tourner à droite>", "tourneradroite();")
     )){
       console.error("BI_bloctojavascript ERROR 1 : unknown bloc !");
       return "";
