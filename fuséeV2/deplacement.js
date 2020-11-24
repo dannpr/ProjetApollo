@@ -1,14 +1,23 @@
+console.log(document);
+console.log(document.getElementById("fusee"));
+console.log(document.getElementById("fusee").style);
+
+
 /* informations sur l'obstacle meteorite */
+var m=document.getElementById("meteorite");
 var ym=90;
 var hm=90;
+var xm=150;
+var wm=80;
 
 /*informations sur la fusée*/
+var f=document.getElementById("fusee");
 var yf=430;
 var xf=180;
-var currentangle = 0;
-var direction = "haut";
-//console.log(direction);
-var f=document.getElementById("fusee");
+var wf=50;
+
+console.log(yf);
+
 
 function rejouer (chaine){
 	if(typeof chaine=="string"){
@@ -19,6 +28,16 @@ function rejouer (chaine){
 			document.location.href="Page d'accueil.html";
 		}
 	}
+}
+
+function colision(y){
+	if(((y>ym) && (y<ym+hm-20))||((xf>xm) &&(xf>xm+wm))||((xf+wf<xm) &&(xf+wm<xm+wm))){
+			f.src="explosion.png";
+			f.style.left=150;
+			f.style.width=80;
+			setTimeout(function(){rejouer("Perdu! Voulez-vous rejouer ?")}, 1000);	
+
+		} 
 }
 
 function avancer(direction){
@@ -52,6 +71,7 @@ function avancer(direction){
 		default:
 		printf("Error! la direction est incorrecte");
 	}
+	colision();
 
 
 }
@@ -129,6 +149,7 @@ function tourner(dir,sens) {
 					printf("Error! le sens est incorrecte");
 			}
 		console.log(direction);
+		colision();
 }
 
 //refaire programme collision
