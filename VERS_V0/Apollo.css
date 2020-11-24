@@ -1,0 +1,181 @@
+@font-face{
+	font-family:'Revamped';
+	src: url('Revamped.odt');
+}
+
+
+body{
+	background-color:rgb(154, 148, 255);
+	margin: 0;
+}
+
+header{
+	background-color:black;
+}
+
+h1, h3{
+	display: flex;
+	justify-content:center;
+	color:white;
+}
+
+.apollo{
+	font-family:'Revamped';
+	font-size: 50px;
+	margin-bottom: 0;
+}
+.slogan{
+	font-family: 'Avantgarde';
+	font-style: italic;
+	margin-top: 0;
+}
+
+h1{
+	font-size: 20px;
+}
+h3{
+	font-size: 15px;
+}
+p{
+	color:white;
+	text-align: center; 
+	color:rgb(6, 14, 82);
+}
+
+
+.conteneur{
+	position:absolute;
+	display: flex;
+	flex-direction: row;
+	flex-wrap:wrap;
+	justify-content: center;
+	justify-content: space-evenly;
+	width:100%;
+	z-index:0;
+	margin-top: 24px;
+}
+
+
+.animation{
+	position :relative;
+	background: url(spaceGif.gif)no-repeat center center; 
+	width:400px;
+	height:500px;
+	border: 4px solid black;
+
+}
+
+/*IMAGE DE BASE QUE J'AI REMPLACEE PAR UN GIF :) https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg*/   
+
+.zone2{
+	background-color: rgb(0, 0, 0) ;
+	width:60%;
+    height:500px;
+    display:grid;
+    grid-template: "gestion menu" 65%
+                 "gestion compil" 35%
+				 /65% 35%;
+	border: 4px solid black;
+	
+}
+menu{
+    background-color: rgb(154, 159, 159);
+	/*grid-area: menu;*/
+	display: flex;
+	flex-flow: column;
+    margin:5px;
+}
+
+
+zone{
+    background-color: rgb(173, 173, 186);
+    grid-area:gestion;
+}
+comp{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+    background-color:rgb(199, 195, 195);
+	margin:5px;
+}
+.zonedepot{
+    width: auto;
+    height:300px;
+    padding: 10px;
+  }
+  
+  .balise{
+    width:125px;
+    height:auto;
+  }
+  
+  .depose{
+    border:1px solid black;
+    position:absolute;
+    height:45px;
+  }
+  
+  .delete{
+    width:125px;
+    border:1px solid black;
+    height:45px;
+  }
+  
+  .tenu{
+    border: 2px dashed black;
+  }
+  
+  .appuyee{
+    border: 4px solid grey;
+  }
+
+.Zone3{
+	background-color: rgb(149, 185, 240); 
+	width:40%;
+	height:500px;
+}
+
+#fusee{
+	display:block;
+	width:40px;
+	position:absolute;
+	z-index:2;
+	left:180px;/*coordonnées*/
+	top:430px;
+	animation: move 3s 2ms 1 linear ;
+
+}
+
+#meteorite{
+	width:80px;
+	height:90px;
+	position:absolute;
+	z-index:1;	
+	left:150px;/*coordonées*/
+	top:90px;
+}
+
+
+button{ 
+	border-radius:12px 0 12px 0; 
+	background: #2b229b;
+	border: 1px solid white;
+	color:#fff;
+	font:bold 12px Verdana;
+	padding:6px 0 6px 0;
+	margin: 4px 4px  0 0;
+}
+.toolbox{
+	display: flex;
+	flex-flow: column;
+}
+
+input{
+	padding:6px 0 6px 0;
+	font:bold 13px Arial;
+	background:#478bf9;
+	color:#fff;
+	border-radius:2px;
+	width:100px;
+	border: 2px solid white;
+}
