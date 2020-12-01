@@ -87,11 +87,11 @@ menu{
 }
 
 
-zone{
+.zone{
     background-color: rgb(173, 173, 186);
     grid-area:gestion;
 }
-comp{
+.comp{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -105,13 +105,12 @@ comp{
   }
   
   .balise{
-    width:125px;
+    width:100%;
     height:auto;
   }
   
   .depose{
     border:1px solid black;
-    position:absolute;
     height:45px;
   }
   
@@ -161,13 +160,16 @@ button{
 	background: #2b229b;
 	border: 1px solid white;
 	color:#fff;
-	font:bold 12px Verdana;
-	padding:6px 0 6px 0;
-	margin: 4px 4px  0 0;
+	font-weight: bold;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 0.9rem;
+	padding:0.8rem 0 0.8rem 0;
+	margin: 0.6rem 0.6rem  0 0;
 }
 .toolbox{
 	display: flex;
 	flex-flow: column;
+	align-items: center;
 }
 
 input{

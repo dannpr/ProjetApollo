@@ -127,11 +127,11 @@ baliseAll.forEach(balise =>{
   }
 
 
-box.forEach(vide =>{
-  vide.addEventListener('dragover', dragOver);
-  vide.addEventListener('dragenter', dragEnter);
-  vide.addEventListener('dragleave', dragLeave);
-  vide.addEventListener('drop', dragDrop);
+box.forEach(elementDraggeable =>{
+  elementDraggeable.addEventListener('dragover', dragOver);
+  elementDraggeable.addEventListener('dragenter', dragEnter);
+  elementDraggeable.addEventListener('dragleave', dragLeave);
+  elementDraggeable.addEventListener('drop', dragDrop);
 });
 
 
