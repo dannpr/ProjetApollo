@@ -51,28 +51,27 @@ p{
 	justify-content: center;
 	justify-content: space-evenly;
 	width:100%;
-	z-index:0;
+	z-index:0;   
 	margin-top: 24px;
 }
 
 
 .animation{
 	position :relative;
-	background: url(spaceGif.gif)no-repeat center center; 
+	background: url(spaceGif.gif)no-repeat center center;   
 	width:400px;
 	height:500px;
 	border: 4px solid black;
 
 }
 
-/*IMAGE DE BASE QUE J'AI REMPLACEE PAR UN GIF :) https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg*/   
-
-.zone2{
+/* zone contenant la toolobox et la zone de dépot des blocks */
+.zone2{ 
 	background-color: rgb(0, 0, 0) ;
 	width:60%;
     height:500px;
     display:grid;
-    grid-template: "gestion menu" 65%
+    grid-template: "gestion menu" 65%  
                  "gestion compil" 35%
 				 /65% 35%;
 	border: 4px solid black;
@@ -86,11 +85,18 @@ menu{
     margin:5px;
 }
 
-
+/* zone de dépot des blocks */
 .zone{
-    background-color: rgb(173, 173, 186);
+    background-color: rgb(173, 173, 186); 
     grid-area:gestion;
 }
+.zonedepot{
+    width: auto;
+    height:300px;
+    padding: 10px;
+}
+
+/* pour la zone "Compilateur Réinitialiser Gomme" */
 .comp{
 	display: flex;
 	flex-direction: column;
@@ -98,12 +104,8 @@ menu{
     background-color:rgb(199, 195, 195);
 	margin:5px;
 }
-.zonedepot{
-    width: auto;
-    height:300px;
-    padding: 10px;
-  }
-  
+
+
   .balise{
     width:100%;
     height:auto;
@@ -154,7 +156,7 @@ menu{
 	top:90px;
 }
 
-
+/* styliser les blocks d'instructions */
 button{ 
 	border-radius:12px 0 12px 0; 
 	background: #2b229b;
@@ -166,6 +168,7 @@ button{
 	padding:0.8rem 0 0.8rem 0;
 	margin: 0.6rem 0.6rem  0 0;
 }
+/* organiser les élements de la toolbox (les blocks draggable) */
 .toolbox{
 	display: flex;
 	flex-flow: column;
