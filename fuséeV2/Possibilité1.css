@@ -37,7 +37,7 @@ p{
 
 
 .animation{
-	position relative;
+	position relative;/*la position depend de la page */
 	/*cursor=crosshair ;*/
 	background: url(https://diapogram.com/upload/2019/04/18/20190418004741-3065510b.jpg)no-repeat center center; 
 	width:400px;
@@ -67,23 +67,23 @@ p{
 }
 
 #fusee{
-	display:block;
+	display:block;/*permet d'avoir une image propre sans preciser le height*/
 	width:40px;
-	position:absolute;
-	z-index:2;
-	left:180px;/*coordonnées*/
-	top:430px;
+	position:absolute;/*la position ne depend que de la zone d'animation*/
+	z-index:2;/*la fusée est situé au dessus de la zone d'animation et de la fusée*/
+	left:180px;/*coordonnée xf*/
+	top:430px;/*coordonnée yf*/
 	border:solid;
 	transition: all 0.75s ease-out;
 }
 
 #meteorite{
-	width:80px;
-	height:90px;
-	position:absolute;
-	z-index:1;	
-	left:150px;/*coordonées*/
-	top:90px;
+	width:80px;/*largeur de la meteorite on aura besoin pour les coordonnees*/
+	height:90px;/*longueur de la meteorite on aura besoin pour les coordonnees*/
+	position:absolute;/*la position ne depend que de la zone d'animation*/
+	z-index:1;/*l'obstacle est au dessus de la zone d'animation*/	
+	left:150px;/*coordonées xm*/
+	top:90px;/*coordonées ym*/
 }
 
 
