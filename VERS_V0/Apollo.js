@@ -229,3 +229,16 @@ function suppr_bool(e){
     vide.addEventListener('click', supprimer);
   });
 }
+//////////Pop-up (fonctions: fermeture/ouverture)
+$ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+	$(id).style.display ='block';
+}
+var hide = function(id) {
+	$(id).style.display ='none';
+}
+// Pour que le pop up s'affiche automatiquement
+setTimeout(show('popup'),2000);
