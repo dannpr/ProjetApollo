@@ -242,3 +242,14 @@ var hide = function(id) {
 }
 // Pour que le pop up s'affiche automatiquement
 setTimeout(show('popup'),2000);
+
+//Suppression du popup à l'écran 
+var ok = document.getElementById("ok"); 
+
+if(ok){
+  ok.addEventListener("click",deletePopup);  //écouteur d'évènement sur le bouton OK du popup qui appel deletePopup
+}                                       
+                                        
+function deletePopup(){  
+  hide('popup');    
+}
