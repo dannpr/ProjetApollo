@@ -94,6 +94,8 @@ menu{
     width: auto;
     height:300px;
     padding: 10px;
+    position:relative;/*sert de base pour positionner les balises*/
+    overflow : auto;/*ajoute une bare de scroll quand les balises dépassent la taille de la zone*/
 }
 
 /* pour la zone "Compilateur Réinitialiser Gomme" */
@@ -114,6 +116,9 @@ menu{
   .depose{
     border:1px solid black;
     height:45px;
+	  width:200px;
+	position:absolute;/*affichage aux coordonnées par rapport au parent déclaré relative, ici la zone de dépot*/
+	margin:0px;/*annule le margin du type button*/
   }
   
   .delete{
