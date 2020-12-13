@@ -13,7 +13,7 @@ function rejouer (chaine){
 			document.location.reload();
 		}
 		else {
-			document.location.href="Page d'accueil.html";
+			document.location.href="Page_d'acc.html";
 		}
 	}
 }
