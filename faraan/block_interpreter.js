@@ -66,9 +66,9 @@ function BI_bloctojavascript(buffer) {
   (rappel : une fois qu'un bloc est traduit il est retire de buffer)*/
   while (buffer != "") {
     if (!(//on essaie de traduire le bloc suivant
-      matchwith("<Avancer>", "avancer();") ||
-      matchwith("<Tourner à gauche>", "tourneragauche();") ||
-      matchwith("<Tourner à droite>", "tourneradroite();")
+      matchwith("<Avancer>", "avancer(direction);") ||
+      matchwith("<Tourner à gauche>", "tourner(direction,\"antihoraire\")") ||
+      matchwith("<Tourner à droite>", "tourner(direction,\"horaire\");")
     )){// si le bloc suivant ne peut etre traduit, erreur et return
       console.error("BI_bloctojavascript ERROR 1 : unknown bloc !");
       return "";
