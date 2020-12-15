@@ -7,16 +7,15 @@
          <title>Apollo</title>
          <link rel="stylesheet" href="Apollo.css">
 
-
         <!-- bannière du site-->
-         <header>
-             <h1 class="apollo">APOLLO</h1>
-             <h3 class="slogan">I'm not lost, i'm exploring!</h3>
-         </header>
      </head>
      
     <body>
-        <p> <b>Bienvenue sur Apollo, le jeu qui vous permettera d'apprendre l'algorithmique de manière amusante et ludique! Vous utiliserez des balises dont le fonctionnement vous sera expliqué au fur et à mesure de votre avancement dans le jeu</b>.</p>
+        <header>
+            <h1 class="apollo">APOLLO</h1>
+            <h3 class ="slogan">I'm not lost, i'm exploring!</h3>
+        </header>
+
         <div class="conteneur">
           <!-- Zone 1 d'animation de la fusée-->
      	    <div class="animation">
@@ -28,7 +27,7 @@
                 <div class="zone2">  
 
                     <menu id="menu">      
-                        <h1 style="display: flex, justify-content: center;">Menu</h1>
+                        <h1>Menu</h1>
 
                         <!-- zone contenant les block d'instruction draggable -->
                         <div class="toolbox">
@@ -42,7 +41,7 @@
 
                     <!-- zone  de dépot des blocks d'instruction  -->
                      <div class="zone">
-                         <h1 style="text-align:center">Zone de Dépot</h1>
+                         <h1>Zone de Dépot</h1>
                          <hr class="depart" size="4" color="black"/>
                          <div id="depot" class="zonedepot"></div>
                      </div>
@@ -56,14 +55,18 @@
                     </div>
 
                 </div>
-	    </div>
+        </div>
+        
 	    <!-- Popup -->
-
             <div id="popup" >
-          	  <p> <b>Bienvenue sur Apollo,</b> le jeu qui vous permettra d'apprendre l'algorithmique de manière amusante et ludique! Vous utiliserez des balises dont le fonctionnement vous sera expliqué au fur et à mesure de votre avancement dans le jeu .</p>
-           	  <a href="#" id = "ok">Ok!</a>
+                <div class ="popup-content">
+                    <p> Bienvenue sur <b>Apollo!</b></p>
+                    <p> Vous allez apprendre l'algorithmique de manière amusante et ludique! Le but du jeu est de créer des suites d'instuctions pour faire avancer une fusée en fonction des niveaux. Amusez-vous bien!</p>
+                    <a href='#' id="cross">Let's go!</a>
+                </div>
             </div>
-        <script src="Apollo.js" type="text/javascript" ></script>
+
+        <script type="text/javascript" src="Apollo.js" ></script>
 
     </body>
 
