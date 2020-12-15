@@ -13,7 +13,7 @@ function rejouer (chaine){
 			document.location.reload();
 		}
 		else {
-			document.location.href="Page_d'acc.html";
+			document.location.href="Page d'accueil.html";
 		}
 	}
 }
@@ -246,13 +246,14 @@ function suppr_bool(e){//fonction de gestion de la gomme
     vide.addEventListener('click', supprimer);
 		vide.addEventListener('click',supprimer_liste);
   });
-}/////////Pop-up (fonctions: fermeture/ouverture)
+}
+// //////////Pop-up (fonctions: fermeture/ouverture)
 $ = function(id) {
   return document.getElementById(id);
 }
 
 var show = function(id) {
-	$(id).style.display ='block';
+	$(id).style.display ='flex';
 }
 var hide = function(id) {
 	$(id).style.display ='none';
@@ -260,11 +261,12 @@ var hide = function(id) {
 // Pour que le pop up s'affiche automatiquement
 setTimeout(show('popup'),2000);
 
-//Suppression du popup à l'écran 
-var ok = document.getElementById("ok"); 
 
-if(ok){
-  ok.addEventListener("click",deletePopup);  //écouteur d'évènement sur le bouton OK du popup qui appel deletePopup
+//Suppression du popup à l'écran 
+var ok = document.getElementById("cross"); 
+
+if(cross){
+  cross.addEventListener("click",deletePopup);  //écouteur d'évènement sur le bouton OK du popup qui appel deletePopup
 }                                       
                                         
 function deletePopup(){  
