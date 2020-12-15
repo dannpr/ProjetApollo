@@ -139,7 +139,7 @@ menu{
   .delete{
     width:125px;
     border:1px solid black;
-    height:45px;
+    /*height:45px; pour que les blocks se fusionnent une fois dans la zone de dépôt */
   }
   
   .tenu{
