@@ -41,6 +41,113 @@ function avancer(){
 	}
 
 }
+
+/*fonction qui ce charge de tourner */
+function tourner(dir,sens) {
+
+
+  switch (sens) {
+
+    case "horaire":
+    console.log(sens);
+
+    currentangle += 90
+    document.querySelector("#fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+
+      switch (dir){
+
+        case "haut":
+           dir = "droite";
+           direction = dir;
+          break;
+
+        case "bas":
+           dir = "gauche";
+           direction = dir;
+          break;
+
+        case "gauche":
+          dir = "haut";
+          direction = dir;
+          break;
+
+        case "droite":
+          dir = "bas";
+          direction = dir;
+          break;
+    }
+    break;
+
+    case "antihoraire":
+    //console.log(sens);
+
+      currentangle -= 90
+      document.querySelector("#fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+
+      switch (dir){
+
+        case "haut":
+           dir = "gauche";
+           direction = dir;
+          break;
+
+        case "bas":
+          dir = "droite";
+          direction = dir;
+          break;
+
+        case "gauche":
+          dir = "bas";
+          direction = dir;
+          break;
+
+        case "droite":
+          dir = "haut";
+          direction = dir;
+          break;
+
+        default:
+            printf("Error! la direction est incorrecte");
+        }
+    break;
+
+    default:
+        printf("Error! le sens est incorrecte");
+    }
+  //console.log(direction); non necessaire affiche la direction
+}
+
+/*fonction hors zone : si le user touche une des limites de la zone de jeux ( a ameliorer)*/
+function hors_zone(){
+//pop up qui affichera que on est hors zone;
+confirm("vous êtes sortie de la zone vous avez perdu");//dire que c'est perdu mais on peu personnalisé
+document.location.reload();//si on est hors zone elle rafraichiera la page (autre solution possible comme donner la possibiliter de recommencer ou aller a la page d'acceuil)
+
+}
+
+/*fonction qui affichera une explosion, un pop-up et ou des nuages selon ce que la fusée "percute"*/
+function collision(yf){
+
+console.log(f.src.indexOf('explosion.png')>=0);
+if(f.src.indexOf('explosion.png')>=0){
+  return;
+}
+//console.log(f.src);
+if((pf>ym) && (pf<ym+hm-20)){
+    f.src="explosion.png";
+    f.style.left=150;
+    f.style.width=80+"px";
+    setTimeout(function(){rejouer("Perdu! Voulez-vous rejouer ?")}, 1000);
+
+  }
+  //console.log(yf); //test pour voir le pixel top de la fusee non obligatoire*
+else{
+  rejouer("Gagné! Voulez-vous rejouer?");
+}
+}
+
+
+
 //pour éviter tout conflict avec d'autres fichier, toute fonction ou variable globale sera de la forme BI_nom
 function BI_query(id) {
     var buffer = "";
@@ -78,7 +185,7 @@ function BI_bloctojavascript(buffer) {
     };
     while (buffer != "") {
       if (!(
-      matchwith("<Avancer>", "avancer(direction);") ||
+      matchwith("<Avancer>", "avancer();") ||
       matchwith("<Tourner à gauche>", "tourner(direction,\"antihoraire\")") ||
       matchwith("<Tourner à droite>", "tourner(direction,\"horaire\");")
       )){
@@ -90,8 +197,8 @@ function BI_bloctojavascript(buffer) {
   }
   
 function BI_runcode(){
-    eval(BI_bloctojavascript(BI_query("#depot")))
-  }
+    eval(BI_bloctojavascript(BI_query("#depot")));
+}
 
 
   
@@ -272,3 +379,4 @@ if(cross){
 function deletePopup(){  
   hide('popup');    
 }
+
