@@ -236,21 +236,22 @@ input{
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	top: -400px;
+	animation: drop 1s ease forwards;
 
 	/* styliser le rectangle du popup */
 	width: 400px;
-	background-color: rgb(5, 6, 68); 
+	background-color: rgb(77, 79, 187); 
 	padding:10px;
 	position: absolute;
-	border-radius: 20px;
 	border: 10px solid rgb(255, 255, 255);
 
 	/* style du texte */
 	font-family: 'MS Sans Serif', Geneva, serif;
 	line-height: 150%;
 	font-size: 20px;	
-	top: -400px;
-	animation: drop 1s ease forwards;
+	
+	
 } 
 
 #cross{
@@ -262,12 +263,14 @@ input{
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
+	
 }
 #cross:hover{
 	border-bottom: 1px solid white;
-	background: #a0cbe7;
+	background: #a0d6fa;
 	color: black;
 	border-radius: 15px;
+	border: 3px solid rgb(255, 255, 255);
 }
 
 .popup-content > p  {
@@ -276,8 +279,9 @@ input{
 	margin:0
 }
 
+/* animation du popup qui glisse vers le bas */
 @keyframes drop{
-	0%{opacity: 0}
-	70%{ transform: translateY(700px)}
-	100%{ transform: translateY(650px)}
+	0%{opacity: 0} 
+	70%{ transform: translateY(650px)}
+	100%{ transform: translateY(50px)}
 }
