@@ -283,5 +283,5 @@ input{
 @keyframes drop{
 	0%{opacity: 0} 
 	70%{ transform: translateY(650px)}
-	100%{ transform: translateY(50px)}
+	100%{ transform: translateY(600px)}
 }
