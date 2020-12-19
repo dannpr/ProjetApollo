@@ -156,26 +156,6 @@ menu{
 	height:500px;
 }
 
-#fusee{
-	display:block;
-	width:40px;
-	position:absolute;
-	z-index:2;
-	left:180px;/*coordonnées*/
-	top:430px;
-	animation: move 3s 2ms 1 linear ;
-
-}
-
-#meteorite{
-	width:80px;
-	height:90px;
-	position:absolute;
-	z-index:1;	
-	left:150px;/*coordonées*/
-	top:90px;
-}
-
 /* styliser les blocks d'instructions */
 button{ 
 	border-radius:12px 0 12px 0; 
