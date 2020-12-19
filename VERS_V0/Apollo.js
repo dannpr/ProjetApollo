@@ -176,6 +176,7 @@ function avancer(direction){
 				default:
 				console.log("Error! la direction est incorrecte");
 			}
+			deplacer(xf,yf);
 			colision(yf,xf,Monjeu.i,0);
 			hors_zone();
 		}
