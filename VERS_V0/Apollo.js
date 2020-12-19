@@ -29,8 +29,8 @@ class Fusee extends Image{
     this.currentangle=0;
     this.direction="haut";
 	}
+	var i=document.createElement("img");
 	afficher_fusee(){
-		var i=document.createElement("img");
 		i.src=this.url;
 		i.className="fusee";
 		i.style.position="absolute";
@@ -42,6 +42,10 @@ class Fusee extends Image{
 		i.style.animation="move 3s 2ms 1 linear";
 		var anim=document.querySelector(".animation");
 		anim.append(i);
+	}
+	deplacer(x,y){
+		i.style.top=y+"px";
+		i.style.left=x+"px";
 	}
 
 }
