@@ -186,7 +186,7 @@ function tourner(dir,sens) {
 			console.log(sens);
 
 			f.currentangle += 90
-			document.querySelector(".fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+			document.querySelector(".fusee").style.transform = 'rotate(' + (f.currentangle) + 'deg)';
 
 				switch (dir){
 
@@ -216,7 +216,7 @@ function tourner(dir,sens) {
 			//console.log(sens);
 
 				f.currentangle -= 90
-				document.querySelector(".fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+				document.querySelector(".fusee").style.transform = 'rotate(' + (f.currentangle) + 'deg)';
 
 				switch (dir){
 
@@ -296,7 +296,7 @@ function BI_bloctojavascript(buffer) {
     };
     while (buffer != "") {
       if (!(
-      matchwith("<Avancer>", "avancer();") ||
+      matchwith("<Avancer>", "avancer(direction);") ||
       matchwith("<Tourner à gauche>", "tourner(direction,\"antihoraire\")") ||
       matchwith("<Tourner à droite>", "tourner(direction,\"horaire\");")
       )){
@@ -306,16 +306,16 @@ function BI_bloctojavascript(buffer) {
     }
     return res;
   }
-  
+
 function BI_runcode(){
     eval(BI_bloctojavascript(BI_query("#depot")));
 }
 
 
-  
+
 
  //////////////partie Balises
- 
+
 const baliseAll = document.querySelectorAll('.balise');//selection de toutes les balises du menu
 const box= document.querySelectorAll('.zonedepot');//selection de la zone de dépot
 //on récupère la taille de la zone de dépot:
@@ -480,14 +480,13 @@ var hide = function(id) {
 setTimeout(show('popup'),2000);
 
 
-//Suppression du popup à l'écran 
-var ok = document.getElementById("cross"); 
+//Suppression du popup à l'écran
+var ok = document.getElementById("cross");
 
 if(cross){
   cross.addEventListener("click",deletePopup);  //écouteur d'évènement sur le bouton OK du popup qui appel deletePopup
-}                                       
-                                        
-function deletePopup(){  
-  hide('popup');    
 }
 
+function deletePopup(){
+  hide('popup');
+}
