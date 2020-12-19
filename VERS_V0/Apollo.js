@@ -1,13 +1,94 @@
-/* informations sur l'obstacle meteorite */
-var ym=90;
-var hm=90;
+class Image{
+	constructor(url,width,height,left,top){
+		this.url=url;
+		this.width=width;
+		this.height=height;
+		this.left=left;
+		this.top=top;
+		this.position="absolute";
+	}
+	afficher(){
+		var i=document.createElement("img");
+		i.src=this.url;
+		i.className='image',
+		i.style.zIndex="1";
+		i.style.position="absolute";
+		i.style.top=this.top+"px";
+		i.style.left=this.left+"px";
+		i.style.width=this.width+"px";
+		i.style.height=this.height+"px";
+		var anim=document.querySelector(".animation");
+		anim.append(i);
+	}
 
-/*informations sur la fusée*/
-var yf=430;
+}
 
-var f=document.getElementById("fusee");
+class Fusee extends Image{
+	constructor(left,top){
+		super("fusee.png",20,40,left,top);
+    this.currentangle=0;
+    this.direction="haut";
+	}
+	afficher_fusee(){
+		var i=document.createElement("img");
+		i.src=this.url;
+		i.className="fusee";
+		i.style.position="absolute";
+		i.style.top=this.top+"px";
+		i.style.left=this.left+"px";
+		i.style.width=this.width+"px";
+		i.style.height=this.height+"px";
+		i.style.zIndex="2";
+		i.style.animation="move 3s 2ms 1 linear";
+		var anim=document.querySelector(".animation");
+		anim.append(i);
+	}
 
-function rejouer (chaine){
+}
+
+class Niveau{
+	constructor(){
+		this.obstacles=[];
+		}
+	ajouter(image){
+		this.obstacles.push(image);
+	}
+	afficher_niveau(){
+		for(var i=0;this.obstacles.length>i;i++){
+			(this.obstacles[i]).afficher();
+		}
+	}
+}
+
+var m0=new Image("meteor.png",80,90,0,0);
+var m1=new Image("meteor.png",80,90,150,90);
+var niveau0= new Niveau(1);
+niveau0.ajouter(m0);
+var niveau1=new Niveau(1);
+niveau1.ajouter(m1);
+
+var Monjeu={
+	fusee:new Fusee (180,430),
+	niveau:[niveau0,niveau1],
+	i:0,
+}
+
+console.log(Monjeu.niveau);
+console.log(niveau0.obstacles);
+console.log(Monjeu.fusee);
+
+function affichage(){
+	var level=Monjeu.i;
+	var niveau=Monjeu.niveau[level];
+	Monjeu.fusee.afficher_fusee();
+	niveau.afficher_niveau();
+}
+
+affichage();
+
+/* réaction au moment d'une réussite ou d'une defaite lors du deplacement du jeu
+proposant au joueur de rejouer ou aller à la page d'acceuil*/
+function rejouer(chaine) {
 	if(typeof chaine=="string"){
 		if (confirm(chaine)){
 			document.location.reload();
@@ -18,135 +99,165 @@ function rejouer (chaine){
 	}
 }
 
-function avancer(){
-	console.log(f.src.indexOf('explosion.png')>=0);
-	if(f.src.indexOf('explosion.png')>=0){
-		return;
-	}
-	//console.log(f.src);
-	yf-=10;
-	if(f && yf>0){
-		f.style.top = yf +"px";
-		if((yf>ym) && (yf<ym+hm-20)){
-			f.src="explosion.png";
-			f.style.left=150;
-			f.style.width=80+"px";
-			setTimeout(function(){rejouer("Perdu! Voulez-vous rejouer ?")}, 1000);	
-
-		} 
-		//console.log(yf); //test pour voir le pixel top de la fusee non obligatoire*   
+function jouer(){
+	var niveau_suivant=Monjeu.i+1;
+	if(niveau_suivant==Monjeu.niveau.length){
+		if (confirm("Bravo, vous avez réussi tous les niveaux!\nVoulez-vous rejouer depuis le début ?")){
+			niveau_suivant=0;
+			affichage();
+		}
+		else{
+			document.location.href="Page d'accueil.html";
+		}
 	}
 	else{
-		rejouer("Gagné! Voulez-vous rejouer ?");
+		if (confirm("Bravo, vous avez réussi\nVoulez-vous passez au niveau suivant ?")){
+			affichage();
+		}
+		else{
+			document.location.href="Page d'accueil.html";
+		}
 	}
-
 }
 
+var f=Monjeu.fusee;
+
+function colision(y,x,level,i){
+	var o=Monjeu.niveau[level].obstacles[i];
+	var ym=o.top;
+	var xm=o.left;
+	var hm=o.height;
+	var wm=o.width;
+	/*condition:1- (y est compris entre le top de l'obstacle et le top+hauteur de l'obstacle)
+		    2- (x est compris entre le left de la meteorite et le left+largeur de la meteorite)
+		    3- (x+largeur de la fusee est compris entre le left de la meteorite et le left+largeur de la meteorite
+			Il faudra faire des ajustement comme dans la consition 1 on fait -20 pour que la collsion soit realiste*/
+	if(((y>ym) && (y<ym+hm-20))||((x>xm) &&(x>xm+wm))||((x+Monjeu.fusee.width<xm) &&(x+wm<xm+wm))){
+			f.src="explosion.png";/*On change l'image de la fusée par une image de l'explosion*/
+			f.left=150;/*On change le top et left pour avoir une image plus grande*/
+			f.width=80;
+			setTimeout(function(){rejouer("Perdu!\nVous avez touché la météorite =(\nVoulez-vous rejouer ?")}, 1000);
+		/*On fait une pause et on utilise la fonction rejouer, la pause permet d'imobiliser la fusée sinon elle continue de faire la fonction avancer*/
+
+		}
+}
+
+
+/*fonction qui gère le deplacement de la fusée lié au css*/
+function avancer(direction){
+	var yf=f.top;
+	var xf=f.left;
+	if(yf=0){
+		jouer()
+	}
+	else{
+		switch (direction) {
+
+			case "haut":
+				yf -=20;
+				break;
+
+			case "bas":
+				yf +=20;
+				break;
+
+			case "gauche":
+				xf -=20;
+				break;
+
+			case "droite":
+				xf +=20;
+				break;
+
+				default:
+				console.log("Error! la direction est incorrecte");
+			}
+			colision(yf,xf,Monjeu.i,0);
+			hors_zone();
+		}
+}
+var direction=f.direction;
 /*fonction qui ce charge de tourner */
 function tourner(dir,sens) {
 
+		switch (sens) {
 
-  switch (sens) {
+			case "horaire":
+			console.log(sens);
 
-    case "horaire":
-    console.log(sens);
+			f.currentangle += 90
+			document.querySelector(".fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
 
-    currentangle += 90
-    document.querySelector("#fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+				switch (dir){
 
-      switch (dir){
+					case "haut":
+						 dir = "droite";
+						 direction = dir;
+						break;
 
-        case "haut":
-           dir = "droite";
-           direction = dir;
-          break;
+					case "bas":
+						 dir = "gauche";
+						 direction = dir;
+						break;
 
-        case "bas":
-           dir = "gauche";
-           direction = dir;
-          break;
+					case "gauche":
+						dir = "haut";
+						direction = dir;
+						break;
 
-        case "gauche":
-          dir = "haut";
-          direction = dir;
-          break;
+					case "droite":
+						dir = "bas";
+						direction = dir;
+						break;
+			}
+			break;
 
-        case "droite":
-          dir = "bas";
-          direction = dir;
-          break;
-    }
-    break;
+			case "antihoraire":
+			//console.log(sens);
 
-    case "antihoraire":
-    //console.log(sens);
+				f.currentangle -= 90
+				document.querySelector(".fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
 
-      currentangle -= 90
-      document.querySelector("#fusee").style.transform = 'rotate(' + (currentangle) + 'deg)';
+				switch (dir){
 
-      switch (dir){
+					case "haut":
+						 dir = "gauche";
+						 direction = dir;
+						break;
 
-        case "haut":
-           dir = "gauche";
-           direction = dir;
-          break;
+					case "bas":
+						dir = "droite";
+						direction = dir;
+						break;
 
-        case "bas":
-          dir = "droite";
-          direction = dir;
-          break;
+					case "gauche":
+						dir = "bas";
+						direction = dir;
+						break;
 
-        case "gauche":
-          dir = "bas";
-          direction = dir;
-          break;
+					case "droite":
+						dir = "haut";
+						direction = dir;
+						break;
 
-        case "droite":
-          dir = "haut";
-          direction = dir;
-          break;
+					default:
+							printf("Error! la direction est incorrecte");
+					}
+			break;
 
-        default:
-            printf("Error! la direction est incorrecte");
-        }
-    break;
-
-    default:
-        printf("Error! le sens est incorrecte");
-    }
-  //console.log(direction); non necessaire affiche la direction
+			default:
+					printf("Error! le sens est incorrecte");
+			}
+		//console.log(direction); non necessaire affiche la direction
 }
 
 /*fonction hors zone : si le user touche une des limites de la zone de jeux ( a ameliorer)*/
 function hors_zone(){
-//pop up qui affichera que on est hors zone;
-confirm("vous êtes sortie de la zone vous avez perdu");//dire que c'est perdu mais on peu personnalisé
-document.location.reload();//si on est hors zone elle rafraichiera la page (autre solution possible comme donner la possibiliter de recommencer ou aller a la page d'acceuil)
-
+	var yf=f.top;
+	var xf=f.left;
+	if ((xf >330) || (xf < 40) || ( yf <20) || (yf>430) )//verifiera a chaque deplacement si la fuséée est bien dans sa zone pour ce deplacer
+		return rejouer("Perdu!\nVous êtes sorti de l'espace =(\nVoulez-vous rejouer?");
 }
-
-/*fonction qui affichera une explosion, un pop-up et ou des nuages selon ce que la fusée "percute"*/
-function collision(yf){
-
-console.log(f.src.indexOf('explosion.png')>=0);
-if(f.src.indexOf('explosion.png')>=0){
-  return;
-}
-//console.log(f.src);
-if((pf>ym) && (pf<ym+hm-20)){
-    f.src="explosion.png";
-    f.style.left=150;
-    f.style.width=80+"px";
-    setTimeout(function(){rejouer("Perdu! Voulez-vous rejouer ?")}, 1000);
-
-  }
-  //console.log(yf); //test pour voir le pixel top de la fusee non obligatoire*
-else{
-  rejouer("Gagné! Voulez-vous rejouer?");
-}
-}
-
-
 
 //pour éviter tout conflict avec d'autres fichier, toute fonction ou variable globale sera de la forme BI_nom
 function BI_query(id) {
