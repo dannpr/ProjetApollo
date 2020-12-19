@@ -4,7 +4,10 @@ var hm=90;
 
 /*informations sur la fusée*/
 var yf=430;
-
+var xf=180;
+var wf=50;
+var direction="haut";
+var currentangle=0;
 var f=document.getElementById("fusee");
 
 function rejouer (chaine){
@@ -18,28 +21,117 @@ function rejouer (chaine){
 	}
 }
 
-function avancer(){
-	console.log(f.src.indexOf('explosion.png')>=0);
-	if(f.src.indexOf('explosion.png')>=0){
-		return;
+function avancer(direction){
+	console.log(yf)
+	if(yf=0){
+		jouer()
 	}
-	//console.log(f.src);
-	yf-=10;
-	if(f && yf>0){
-		f.style.top = yf +"px";
-		if((yf>ym) && (yf<ym+hm-20)){
+	else{
+		switch (direction) {
+
+			case "haut":
+				yf -=20;
+				break;
+
+			case "bas":
+				yf +=20;
+				break;
+
+			case "gauche":
+				xf -=20;
+				break;
+
+			case "droite":
+				xf +=20;
+				break;
+
+				default:
+				console.log("Error! la direction est incorrecte");
+			}
+			//colision(yf,xf,Monjeu.i,0);
+			//hors_zone();
+		}
+}
+function tourner(dir,sens) {
+
+		switch (sens) {
+
+			case "horaire":
+			console.log(sens);
+
+			f.currentangle += 90
+			f.style.transform = 'rotate(' + (currentangle) + 'deg)';
+
+				switch (dir){
+
+					case "haut":
+						 dir = "droite";
+						 direction = dir;
+						break;
+
+					case "bas":
+						 dir = "gauche";
+						 direction = dir;
+						break;
+
+					case "gauche":
+						dir = "haut";
+						direction = dir;
+						break;
+
+					case "droite":
+						dir = "bas";
+						direction = dir;
+						break;
+			}
+			break;
+
+			case "antihoraire":
+			//console.log(sens);
+
+				f.currentangle -= 90
+				f.style.transform = 'rotate(' + (currentangle) + 'deg)';
+
+				switch (dir){
+
+					case "haut":
+						 dir = "gauche";
+						 direction = dir;
+						break;
+
+					case "bas":
+						dir = "droite";
+						direction = dir;
+						break;
+
+					case "gauche":
+						dir = "bas";
+						direction = dir;
+						break;
+
+					case "droite":
+						dir = "haut";
+						direction = dir;
+						break;
+
+					default:
+							printf("Error! la direction est incorrecte");
+					}
+			break;
+
+			default:
+					printf("Error! le sens est incorrecte");
+			}
+		//console.log(direction); non necessaire affiche la direction
+}
+function colision(y){
+	if(((y>ym) && (y<ym+hm-20))||((xf>xm) &&(xf>xm+wm))||((xf+wf<xm) &&(xf+wm<xm+wm))){
 			f.src="explosion.png";
 			f.style.left=150;
-			f.style.width=80+"px";
+			f.style.width=80;
 			setTimeout(function(){rejouer("Perdu! Voulez-vous rejouer ?")}, 1000);	
 
 		} 
-		//console.log(yf); //test pour voir le pixel top de la fusee non obligatoire*   
-	}
-	else{
-		rejouer("Gagné! Voulez-vous rejouer ?");
-	}
-
 }
 //pour éviter tout conflict avec d'autres fichier, toute fonction ou variable globale sera de la forme BI_nom
 function BI_query(id) {
