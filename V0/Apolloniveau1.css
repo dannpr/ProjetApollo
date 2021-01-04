@@ -269,5 +269,5 @@ input{
 	z-index:2;
 	left:180px;
 	top:430px;
-	animation:move 3s 2ms 1 linear;
+	transition: 2s linear 0.5s;
 }
