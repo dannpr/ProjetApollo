@@ -5,12 +5,12 @@
 
 
 body{
-	background-color: black;
+	background-color:#a2c0f7;
 	margin: 0;
 }
 
 header{
-	background-color:black;
+	background-color: #a2c0f7;
 	height: 90px;
 	border-bottom: 1px solid white;
 }
@@ -27,7 +27,7 @@ h1, h3{
 	margin-bottom: 0;
 	display: flex;
 	justify-content:center;
-	color:white;
+	color:black;
 }
 .slogan{
 	font-family: 'Avantgarde';
@@ -35,7 +35,7 @@ h1, h3{
 	margin-top: 0;
 	display: flex;
 	justify-content:center;
-	color:white;
+	color:black;
 }
 
 h1{
@@ -69,13 +69,13 @@ p{
 	background: url(spaceGif.gif)no-repeat center center;
 	width:400px;
 	height:500px;
-	border: 4px solid black;
+	/* border: 4px solid black; */
 	border-radius: 8px;
 }
 
 /* zone contenant la toolobox et la zone de dépot des blocks */
 .zone2{
-	background-color:black ;
+	/* background-color:black ; */ 
 	width:60%;
 	height:500px;
 	border-radius: 8px;
@@ -96,7 +96,11 @@ menu{
 	margin-top: 0;
 	border-radius: 8px;
 }
-
+/* balise hr dans le html, utilisé par */
+.depart{
+	color:#a2c0f7;
+	size: 10px;
+}
 /* zone de dépot des blocks */
 .zone{
     background-color: rgb(255, 255, 255);
@@ -159,7 +163,7 @@ menu{
 
 /* styliser les blocks d'instructions */
 button{
-	border-radius:12px 0 12px 0;
+	border-radius:30px;
 	background: #3780b5;
 	border: 1px solid white;
 	color:#fff;
@@ -193,6 +197,75 @@ input{
 	justify-content: center;
 }
 
+/* Partie Popup */
+
+#popup {
+	/* flouter le background*/
+
+	background-color: rgba(0, 0, 0, 0.7);
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/* pour que le popup s'affiche au premier plan*/
+	position: absolute;
+	/* pour pouvoir centrer le popup dans la page */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+
+.popup-content{
+
+	/* pour placer les élements au sein du rectangle blanc */
+	display: flex;
+    justify-content: center;
+	flex-direction: column;
+
+	/* styliser le rectangle du popup */
+    width: 400px;
+    background-color: rgb(5, 6, 68);
+    padding: 50;
+	position: absolute;
+    /* border-radius: 20px; */
+	border: 10px solid rgb(255, 255, 255);
+	/* style du texte */
+    font-family: 'MS Sans Serif', Geneva, serif;
+    line-height: 150%;
+    font-size: 20px;
+    top: -400px;
+    animation: drop 1s ease forwards;
+}
+/* animation pour le popup qui "tombe" à l'arrivée sur la page web */
+@keyframes drop{
+	0%{opacity: 0}
+	70%{ transform: translateY(650px)}
+	100%{ transform: translateY(600px)}
+}
+.popup-content > p  {
+	color: rgb(255, 255, 255);
+	line-height: 1.8em;
+	margin:0
+}
+/* style de l'élément "Let's go" sur le popup */
+#cross{
+	color: rgb(236, 236, 236);
+	font-size: 20px;
+	margin-left: 70%;
+	margin-top:	30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+}
+#cross:hover{
+	border-bottom: 1px solid white;
+	background: #a0cbe7;
+	color: black;
+	border-radius: 15px;
+}
+
 #fusee{
 	width:40px;
 	height:70px;
@@ -200,8 +273,7 @@ input{
 	z-index:2;
 	left:180px;
 	top:430px;
-	/*animation:move 3s 2ms 1 linear;*/
-	transition: 2s linear 0.5s;
+	transition: 1s linear 0.5s;
 }
 #meteorite{
 	width:80px;
@@ -210,4 +282,42 @@ input{
 	z-index:1;
 	left:150px;
 	top:90px;
+}
+
+/* partie responsive */ 
+@media screen and (max-width: 1000px){
+	.zone2{
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 720px){
+	.zone2{
+		width: 60%;
+		height: 500px;
+		border-radius: 8px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: 
+			"menu compil"
+			"depot depot"
+	}
+	.zone{
+		background-color: rgb(255, 255, 255);
+		grid-area:depot;
+		border-radius: 8px;
+	}
+	.menu{
+		background-color: rgb(255, 255, 255);
+		grid-area: menu;
+	}
+	.comp{
+		background-color: rgb(255, 255, 255);
+		padding: 2px;
+		margin: 5px;
+		margin-top:0px;
+		border-radius: 8px;
+		grid-area: compil;
+	}
 }
