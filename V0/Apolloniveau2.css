@@ -127,14 +127,14 @@ menu{
 	border-radius: 8px;
 }
 
-.balise{
+/* .balise{
 	width:auto;
 	padding: 15px;
-  }
+} */
 
 .depose{
     border:1px solid black;
-    height:45px;
+    height:auto;
 	width:200px;
 	position:absolute;/*affichage aux coordonnées par rapport au parent déclaré relative, ici la zone de dépot*/
 	margin:0px;/*annule le margin du type button*/
@@ -170,9 +170,33 @@ button{
 	font-weight: bold;
 	font-family: Geneva, Tahoma, sans-serif;
 	font-size: 0.9rem;
-	padding:0.8rem 0 0.8rem 0;
-	margin: 0.6rem 0.6rem  0 0;
+	width:auto;
+	padding: 15px;
+	position:relative;
 }
+
+.tooltip{
+	position: absolute; 
+	font-size: 0.4 em;
+	bottom: 0;
+	left: 0;
+	color: white;
+	transform: translateY(100%);	/* pour le positionner en bas du block */
+	opacity: 0; 	/* pour rendre invisible le tooltip lorsqu'il n'y a pas de survol d'un block*/
+	transition: opacity 200ms 0.8s; 	/* delay de O.8s pour que cela ne s'affiche pas directement au survol*/
+	background-color: #191658;
+	padding: 0.4em;
+	border-radius: 10%;
+	z-index: 2;
+}
+
+/* Pour afficher le tooltip au survol d'un block */
+button:hover .tooltip{
+	opacity: 1; 		
+	transform: translateY(105%);  /* permet d'avoir un effet plus naturel de déroulement vers le bas*/
+}
+
+
 /* organiser les élements de la toolbox (les blocks draggable) */
 .toolbox{
 	display: flex;
@@ -214,7 +238,6 @@ input{
 	align-items: center;
 
 }
-
 
 .popup-content{
 
@@ -275,6 +298,7 @@ input{
 	top:430px;
 	transition: 1s linear 0.5s;
 }
+
 #meteorite{
 	width:80px;
 	height:90px;

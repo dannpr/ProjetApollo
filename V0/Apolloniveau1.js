@@ -389,25 +389,3 @@ function deletePopup(){
 }
 
 
-// // Popup au survol d'un block d'instruction
-// // on récupère le block 
-// var blocks = document.getElementsByTagName("button");
-
-// for(i = 0; i < blocks.length; i++) {
-// 	let block = blocks[i]
-// 	var e = block.addEventListener("mouseover", displayPopup);
-// }
-
-// function displayPopup(e){
-// 	let block = e.target;
-// 	let text = block.getAttribute("title");
-// 	// on créer un nouvel élément HTML avec le texte à afficher au survol
-// 	let newElem = document.createElement('div');
-// 	let newText= document.createTextNode(text);
-// 	newElem.appendChild(newText);
-// 	block.appendChild(newElem);
-
-
-// 	//STYLE DU POPUP
-// 	newElem.style.
-// }
