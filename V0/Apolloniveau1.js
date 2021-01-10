@@ -500,4 +500,17 @@ function deletePopup(){
   hide('popup');
 }
 
+//Popup2
 
+document.getElementById("open-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.add("active");
+});
+document.getElementById("dismiss-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.remove("active");
+});
+//Bouton de compilation en boucle
+function complilOnLoop(){
+	for (var i = 0; i < 20; i++) {
+		compilation('click');
+		BI_runcode('click');
+
+	}
+}
