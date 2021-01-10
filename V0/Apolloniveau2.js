@@ -484,3 +484,24 @@ function suppr_bool(e){//fonction de gestion de la gomme
 		vide.addEventListener('click',supprimer_liste);
   });
 }
+//Popup2
+
+document.getElementById("open-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.add("active");
+});
+document.getElementById("dismiss-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.remove("active");
+});
+
+
+//animation meteorite
+$(function() {
+    var $elie = $("#meteorite"), degree = 0, timer;
+    rotate();
+    function rotate() {
+        
+        $elie.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});  
+        $elie.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});                      
+        timer = setTimeout(function() {
+            ++degree; rotate();
+        },20);
+    }
+});
