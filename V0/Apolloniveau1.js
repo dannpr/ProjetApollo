@@ -508,7 +508,7 @@ document.getElementById("dismiss-popup1-btn").addEventListener("click",function(
 });
 //Bouton de compilation en boucle
 function complilOnLoop(){
-	for (var i = 0; i < 20; i++) {
+	for (var i = 0; i < 5; i++) {
 		compilation('click');
 		BI_runcode('click');
 
