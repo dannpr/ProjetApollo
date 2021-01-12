@@ -1,7 +1,7 @@
 var f=document.getElementById("fusee");
 var a=document.getElementById("arrivee");
 var anim=document.querySelector(".animation");
-
+/*classe représentant les obstacles du jeu*/
 class Image{
 	constructor(url,width,height,left,top){
 		this.url=url;
@@ -26,7 +26,7 @@ class Image{
 }
 var direction="haut";
 var currentangle=0;
-
+/*un niveau est composée d'une liste d'obstacles, des coordonnées de la fusée et de l'arrivée*/
 class Niveau{
 	constructor(obstacles,xf,yf,xa,ya){
 		this.obstacles=obstacles;
@@ -47,6 +47,7 @@ class Niveau{
 		}
 	}
 }
+/*Déclaration des obstacles utilisées dans ce jeu*/
 var m0=new Image("meteor.png",100,120,150,200);
 var m1=new Image("meteor.png",150,160,60,60);
 var m2=new Image("meteor.png",90,110,250,50);
@@ -58,18 +59,22 @@ var m7=new Image("meteor.png",40,40,140,300);
 var m8=new Image("meteor.png",40,40,250,240);
 var m9=new Image("meteor.png",40,40,340,190);
 
+/*Déclaration des niveaux*/
 var niveau0= new Niveau([],180,420,190,20);
 var niveau1=new Niveau([m0],350,420,0,0);
 var niveau2=new Niveau([m1,m2],180,420,0,0);
 var niveau3=new Niveau([m0,m5,m6],350,420,0,420);
 var niveau4=new Niveau([m4,m7,m8,m9],180,420,0,0);
 
-
+/*objet representant le jeu*/
 var Monjeu={
-	niveau:[niveau1,niveau1,niveau2,niveau3,niveau4],
+	/*Liste de niveau*/
+	niveau:[niveau0,niveau1,niveau2,niveau3,niveau4],
+	/*cpt représentant le niveau actuel*/
 	i:0,
 }
 
+/*extraction des données dans l'objet*/
 var level=Monjeu.i;
 var niveau=Monjeu.niveau[level];
 niveau.afficher_niveau();
@@ -79,7 +84,7 @@ var yf=niveau.yf;
 var xf=niveau.xf;
 
 
-
+/*fonction de mise à jour de la page, affichage du n-ième niveau*/
 function reset(n){
 	suppr_tout();
 	anim.classList.remove("image");
@@ -95,6 +100,7 @@ function reset(n){
 	currentangle=0;
 }
 
+/*fonction appelée pour rejouer le même niveau*/
 function rejouer(chaine) {
 	if(typeof chaine=="string"){
 		if (confirm(chaine))
@@ -103,20 +109,25 @@ function rejouer(chaine) {
 			document.location.href="Page d'accueil.html";
 	}
 }
+
+/*fonction vérifiant si l'on gagne: si la fusée gagne alors c'ets gagné sinon perdu*/
 function gagne(){
 	/*informations sur l'arrivee */
 	var ya=niveau.ya;
 	var xa=niveau.xa;
 	var wa=40;
 	var ha=50;
+	/*vérification si la fusée est sur le drapeau*/
 	if(((yf>=ya && yf<=ya+ha-5) || (yf+hf>=ya+5 && yf+hf<=ya+ha) )&& ((xf>xa && xf<xa+wa)||(xf+wf>xa && xf+wf<xa+wa))){
-		level++;
+		level++;//incrémentation du niveau
+		/*si c'est le dernier niveau:on peut recommencer ou revenir  la page d'acceuil*/
 		if (level==Monjeu.niveau.length){
 			if(confirm("Bravo,vous avez reussi tous les niveaux! Voulez-vous recommencer?"))
 				reset(0);
 			else
 				document.location.href="Page d'accueil.html";
 		}
+		/*sinon on peut passer à la page d'acceuil ou bien revenir à la page d'acceuil*/
 		else{
 			if(confirm("Bravo,vous avez reussi! Voulez-vous passer au niveau suivant ?"))
 				reset(level);
@@ -127,7 +138,7 @@ function gagne(){
 	else rejouer("Perdu!\nVous êtes perdu dans l'espace!\nVoulez-vous rejouer?");
 
 }
-
+/*vérification s'il y la fusée sort de la zone ou si elle touche un obstacle*/
 function perdu(){
 	if ((xf<=10) || (xf+wf>=400) || (yf>=430) || (yf<=10) ){//verifiera a chaque deplacement si la fuséée est bien dans sa zone pour ce deplacer
 		rejouer("Perdu!\nVous êtes sorti de l'espace =(\nVoulez-vous rejouer?");
@@ -576,25 +587,43 @@ function suppr_bool(e){//fonction de gestion de la gomme
 		vide.addEventListener('click',supprimer_liste);
   });
 }
+// //////////Pop-up (fonctions: fermeture/ouverture)
+$ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+	$(id).style.display ='flex';
+}
+var hide = function(id) {
+	$(id).style.display ='none';
+}
+// Pour que le pop up s'affiche automatiquement
+setTimeout(show('popup'),2000);
+
+
+//Suppression du popup à l'écran
+var ok = document.getElementById("cross");
+
+if(cross){
+  cross.addEventListener("click",deletePopup);  //écouteur d'évènement sur le bouton OK du popup qui appel deletePopup
+}
+
+function deletePopup(){
+  hide('popup');
+}
+
 //Popup2
 
 document.getElementById("open-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.add("active");
 });
 document.getElementById("dismiss-popup1-btn").addEventListener("click",function(){document.getElementsByClassName("popup1")[0].classList.remove("active");
 });
+//Bouton de compilation en boucle
+function complilOnLoop(){
+	for (var i = 0; i < 5; i++) {
+		compilation('click');
+		BI_runcode('click');
 
-
-//animation meteorite
-$(function() {
-    var $elie = $("#meteorite"), degree = 0, timer;
-    rotate();
-    function rotate() {
-
-        $elie.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});
-        $elie.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});
-        timer = setTimeout(function() {
-            ++degree; rotate();
-        },20);
-    }
-});
-
+	}
+}
