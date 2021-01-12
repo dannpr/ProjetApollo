@@ -398,6 +398,8 @@ function suppr_tout(event){//fonction de suppression des balises
 	//réinitialisation des coordonnées d'ajout
   x=5;
   y=0;
+	nbBoucle=0;
+	nbFindeboucle=0;
 	//réinitialisation de la liste des balises
   liste=[];
 	//réinitialisation de la gomme et de son booléen(cf les fonctions du bouton gomme ci-dessous)
