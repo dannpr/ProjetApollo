@@ -17,11 +17,11 @@
             <h1 class="apollo">APOLLO</h1>
             <h3 class ="slogan">I'm not lost, i'm exploring!</h3>
         </header>
-        <!-- Bouton aide-->       
-        <div class="popup1 aide ">     
+        <!-- Bouton aide-->
+        <div class="popup1 aide ">
                 <div class="title">
                     <p> Pour bouger il faut déplacer les balises vers la zone de dépot</p>
-                    
+
 
                 </div>
                 <div class="indication">
@@ -31,11 +31,14 @@
                     <button  name="Tourner à gauche" class="balise" >Tourner à gauche
                         <span class ="tooltip">Ce block permet de tourner la fusée de 90 degrés vers la gauche</span>
                     </button>
-                    <button name="Tourner à droite" class="balise"  title="Fait pivoter la fusée vers la droite">Tourner à droite
+                    <button name="Tourner à droite" class="balise">Tourner à droite
                         <span class ="tooltip">Ce block permet de tourner la fusée de 90 degrés vers la droite</span>
                     </button>
                     <button name="Boucle" class="balise"  >Boucle
                         <span class="tooltip">Effectue les actions comprise entre elle-même et la balise de fin de boucle autant de fois que selectionné par l'utilisateur</span>
+                    </button>
+                    <button name="Fin de boucle" class="balise">Fin de boucle
+                      <span class="tooltip">Ferme une boucle</span>
                     </button>
                     <p> Après avoir sélectionner les boucles il ne faut pas oublier d'appuyer sur le bouton compiler! </p>
                 </div>
@@ -45,7 +48,7 @@
                 </div>
         </div>
         <div class="aide">
-            <button id="open-popup1-btn" onclick="afficher_Aide();"> 
+            <button id="open-popup1-btn" onclick="afficher_Aide();">
             Aide</button>
         </div>
         <div class="conteneur">
@@ -63,17 +66,17 @@
 
                         <!-- zone contenant les block d'instruction draggable -->
                         <div class="toolbox">
-                            <button name="Avancer" class="balise" >Avancer
+                            <button name="Avancer" class="balise" draggable="true" >Avancer
                             </button>
 
-                            <button  name="Tourner à gauche" class="balise" >Tourner à gauche
+                            <button  name="Tourner à gauche" class="balise" draggable="true">Tourner à gauche
                             </button>
 
-                            <button name="Tourner à droite" class="balise"  title="Fait pivoter la fusée vers la droite">Tourner à droite
+                            <button name="Tourner à droite" class="balise" draggable="true" >Tourner à droite
                             </button>
-                             <button name="Boucle" class="balise"  >Boucle
+                             <button name="Boucle" class="balise"  draggable="true">Boucle
                              </button>
-                            <button name="Fin de boucle" class="balise" >Fin de boucle
+                            <button name="Fin de boucle" class="balise" draggable="true" >Fin de boucle
                              </button>
                         </div>
                     </menu>
