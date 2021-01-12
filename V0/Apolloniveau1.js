@@ -417,7 +417,7 @@ function supprimer(event){//fonction de suppression d'une balise unique
   		balises.forEach(vide =>{//itération sur chaque balise
 				var k=vide.offsetTop;//on récupère l'ordonnée de la balise
 				var l=vide.offsetLeft;
-    		if(k>=y1){//si l'ordonnée de la balise est supérieure à celle de la balise supprimée précédement, il faut la remonter, ce qui est effectué à la ligne suivante en décrémentant l'ordonnée
+    		if(k>=y1){//si l'ordonnée de la balise est supérieure à celle de la balise supprimée précédement, il faut la remonter, ce qui est effectué à la ligne suivante en décrémentant l'ordonnée. il faut également supprimer l'indentation.
 					temp=vide.textContent;
 					if(prochFin){
 						if(temp=="Fin de boucle"){
@@ -435,21 +435,26 @@ function supprimer(event){//fonction de suppression d'une balise unique
     		}
   		});
 			if(prochFin) x-=25;//cas où le programme n'a pas rencontré de fin de boucle, auquel cas il faut décrémenter x pour les prochains ajouts
-		}
-		else{
+		}else{
 			y-=50;//la coordonnée d'ajout est décrémentée de la place laissée par la balise supprimer, de sorte que les prochaines balises insérées le soit correctement
+			if(balise=="Fin de boucle"){
+				x+=25;//lors des ajout suivant, il faut reprendre l'indentation de la balise de boucle, désormais ouverte
+				nbFinDeBoucle-=1;
+			}
   		this.remove();//suppression
   		const balises=document.querySelectorAll('.depose');//on sélectionne toutes les balises restantes dans la zone de dépot
   		balises.forEach(vide =>{//itération sur chaque balise
 				var k=vide.offsetTop;//on récupère l'ordonnée de la balise
     		if(k>=y1){//si l'ordonnée de la balise est supérieure à celle de la balise supprimée précédement, il faut la remonter, ce qui est effectué à la ligne suivante en décrémentant l'ordonnée
       		vide.style.top=(k-50)+'px';
+					if(balise=="Fin de boucle"){
+						vide.style.left=(vide.offsetLeft+25)+'px';
+					}
     		}
   		});
 		}
   }
 }
-
 function supprimer_liste(e){//fonction de mise à jour de la liste des balises lors des suppressions
 	liste.splice(liste.indexOf(this),1);//suppression de la liste de la balise supprimée. on utilise la méthode splice qui supprime à partir de l'indice donné en premier argument(ici l'indice de la balise à supprimer) le nombre d'éléments donné en 2ème argument (ici 1 puisqu'on ne supprime qu'une balise à la fois).La longueur de la liste diminue de 1
 	if(liste.length==0) y=0;//sécurité supplémentaire sur l'ordonnée d'ajout:on s'assure que lorsque la liste est vide, donc qu'il n'y a plus de balises dans la zone de dépot, les coordonnées d'ajout sont bien les coordonnées initiales
