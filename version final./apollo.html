@@ -1,0 +1,107 @@
+<html>
+
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <title>Apollo</title>
+         <link rel="stylesheet" href="apollo.css">
+<!-- =======================add jquery from CDN=========-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<!-- ================================-->
+        <!-- bannière du site-->
+     </head>
+
+    <body>
+        <header>
+            <h1 class="apollo">APOLLO</h1>
+            <h3 class ="slogan">I'm not lost, i'm exploring!</h3>
+        </header>
+        <!-- Bouton aide-->
+        <div class="popup1 aide ">
+                <div class="title">
+                    <p> Pour bouger il faut déplacer les balises vers la zone de dépot</p>
+
+
+                </div>
+                <div class="indication">
+                    <button  name="Avancer" class="balise" >Avancer
+                        <span class ="tooltip">Ce block permet d'avancer la fusée</span>
+                    </button>
+                    <button  name="Tourner à gauche" class="balise" >Tourner à gauche
+                        <span class ="tooltip">Ce block permet de tourner la fusée de 90 degrés vers la gauche</span>
+                    </button>
+                    <button name="Tourner à droite" class="balise">Tourner à droite
+                        <span class ="tooltip">Ce block permet de tourner la fusée de 90 degrés vers la droite</span>
+                    </button>
+                    <button name="Boucle" class="balise"  >Boucle
+                        <span class="tooltip">Effectue les actions comprise entre elle-même et la balise de fin de boucle autant de fois que selectionné par l'utilisateur</span>
+                    </button>
+                    <button name="Fin de boucle" class="balise">Fin de boucle
+                      <span class="tooltip">Ferme une boucle</span>
+                    </button>
+                    <p> Après avoir sélectionner les boucles il ne faut pas oublier d'appuyer sur le bouton compiler! </p>
+                </div>
+                <div class="dismiss-btn">
+                    <button id="dismiss-popup1-btn"> Compris!
+                    </button>
+                </div>
+        </div>
+        <div class="aide">
+            <button id="open-popup1-btn" onclick="afficher_Aide();">
+            Aide</button>
+        </div>
+        <div class="conteneur">
+          <!-- Zone 1 d'animation de la fusée-->
+     	    <div class="animation">
+            <img id="fusee" src="fusee.png" alt="fusée">
+            <img id="arrivee" src="arrivee.png" alt="arrivée">
+          </div>
+
+                  <!--  ZONE 2 :zone de dépot + menu toolbox -->
+                <div class="zone2">
+
+                    <menu id="menu">
+                        <h1>Menu</h1>
+
+                        <!-- zone contenant les block d'instruction draggable -->
+                        <div class="toolbox">
+                            <button name="Avancer" class="balise" draggable="true" >Avancer
+                            </button>
+
+                            <button  name="Tourner à gauche" class="balise" draggable="true">Tourner à gauche
+                            </button>
+
+                            <button name="Tourner à droite" class="balise" draggable="true" >Tourner à droite
+                            </button>
+                             <button name="Boucle" class="balise"  draggable="true">Boucle
+                             </button>
+                            <button name="Fin de boucle" class="balise" draggable="true" >Fin de boucle
+                             </button>
+                        </div>
+                    </menu>
+
+                    <!-- zone  de dépot des blocks d'instruction  -->
+                     <div class="zone">
+                         <h1>Zone de Dépot</h1>
+                         <hr class="depart" size="4" color="black"/>
+                         <div id="depot" class="zonedepot"></div>
+                     </div>
+
+
+                    <!-- zone en bas à droite de la zone 2 -->
+                    <div class="comp">
+                        <input class="compil" type="button" value="Compiler">
+                        <input class="init" type="button" value="Réinitialiser">
+                        <input class="gomme" type="button" value="Gomme">
+                    </div>
+
+                </div>
+        </div>
+
+
+        <script type="text/javascript" src="apollo.js" ></script>
+
+    </body>
+
+</html>
