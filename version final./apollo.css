@@ -162,84 +162,6 @@ menu{
 
 /* Popup1 */
 
-.aide{
-	position: absolute;
-	top:10%;
-	left:90%;
-	transform:translate(-10%,-90%);
-}
-.popup1{
-	top: -150%;
-	left: 65%;
-	width:350px;
-	height:400px;
-	padding:30px 20px;
-	background: #9c8b98;
-	border-radius:10px;
-	box-sizing:border-box;
-	z-index:2;
-	text-align:center;
-	opacity:0;
-	transform:translate(-50%,-50%) scale(0.5);
-	transition: opacity 300Ms ease-in-out,
-				top 1000ms ease-in-out,
-				transform 1000ms ease-in-out,
-
-}
-.popup1.active {
-	opacity:1;
-	top:50%;
-	transform:translate(-50%,-50%) scale(1);
-	transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
-}
-.popup1 .title{
-	margin:5px 0px;
-	font-size:20px;
-	font-weight:600;
-}
-.popup1 .indication{
-	color:#222;
-	font-size:15px;
-	padding:5px
-}
-.popup1 .dismiss-btn button{
-	padding:10px;
-	background:#111;
-	color:#f5f5f5;
-	border: 2px solid #111;
-	font-size:16px;
-	font-weight:600;
-	outline:none;
-	border: radius 10px;
-	transition: all 300ms ease-in-out;
-	cursor:pointer;
-}
-.popup1 .dismiss-btn button:hover{
-	color:#111;
-	background: #f5f5f5;
-
-}
-.popup1 >div {
-	position:relative;
-	top:10px;
-	opacity:0;
-}
-
-.popup1.active > div {
-	position:relative;
-	top:10px;
-	opacity:0;
-}
-
-.popup1.active .title {
-	transition: all 300ms ease-in-out 300ms;
-}
-.popup1.active .description {
-	transition: all 300ms ease-in-out 350ms;
-}
-.popup1.active .dismiss-btn {
-	transition: all 300ms ease-in-out 400ms;
-}
 /* styliser les blocks d'instructions */
 button{
 	border-radius:30px;
@@ -259,6 +181,7 @@ button{
 	font-size: 0.4 em;
 	bottom: 0;
 	left: 0;
+	z-index: 4;
 	color: white;
 	transform: translateY(100%);	/* pour le positionner en bas du block */
 	opacity: 0; 	/* pour rendre invisible le tooltip lorsqu'il n'y a pas de survol d'un block*/
@@ -318,7 +241,7 @@ input{
 }
 
 .popup-content{
-
+	z-index:3;
 	/* pour placer les élements au sein du rectangle blanc */
 	display: flex;
     justify-content: center;
@@ -366,7 +289,78 @@ input{
 	color: black;
 	border-radius: 15px;
 }
+/* Popup1 */
 
+.aide{
+	position: absolute;
+	top:7%;
+	left:90%;
+	transform:translate(-10%,-90%);
+}
+.popup1{
+	position: absolute;
+	top: -150%;
+	left: 65%;
+	width:350px;
+	height:400px;
+	padding:30px 20px;
+	background: #9c8b98;
+	border-radius:10px;
+	box-sizing:border-box;
+	z-index:3;
+	text-align:center;
+	opacity:0;
+
+
+}
+.popup1.active {
+	opacity:1;
+	top:50%;
+	transform:translate(-50%,-50%) scale(1);
+	transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+}
+.popup1 .title{
+	margin:5px 0px;
+	font-size:20px;
+	font-weight:600;
+}
+.popup1 .indication{
+	color:#222;
+	font-size:15px;
+	padding:5px
+}
+.popup1 .dismiss-btn button{
+	padding:10px;
+	background:#111;
+	color:#f5f5f5;
+	border: 2px solid #111;
+	font-size:16px;
+	font-weight:600;
+	outline:none;
+	border: radius 10px;
+	transition: all 300ms ease-in-out;
+	cursor:pointer;
+}
+.popup1 .dismiss-btn button:hover{
+	color:#111;
+	background: #f5f5f5;
+
+}
+
+.popup1.active > div {
+	top:0px;
+	opacity:1;
+}
+
+.popup1.active .title {
+	transition: all 300ms ease-in-out 300ms;
+}
+.popup1.active .description {
+	transition: all 300ms ease-in-out 350ms;
+}
+.popup1.active .dismiss-btn {
+	transition: all 300ms ease-in-out 400ms;
+}
 #fusee{
 	width:40px;
 	height:70px;
