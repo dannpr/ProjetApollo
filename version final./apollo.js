@@ -360,7 +360,7 @@ function BI_bloctojavascript(buffer) {
 		var insert=false;
     while (buffer != "") {
 			for(i=1;i<100; i++){
-				if(matchwith("<"+parseInt(i)+" Boucle>", "for(i=1; i<"+parseInt(i)+"; i++){")){
+				if(matchwith("<"+parseInt(i)+" Boucle>", "for(i=1; i<"+(parseInt(i)+1)+"; i++){")){
 					insert=true;
 				}
 			}
