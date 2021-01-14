@@ -1,6 +1,6 @@
 var f=document.getElementById("fusee");
 var a=document.getElementById("arrivee");
-var anim=document.querySelector(".animation");
+var anim=document.getElementById("animation");
 /*classe représentant les obstacles du jeu*/
 class Image{
 	constructor(url,width,height,left,top){
@@ -9,20 +9,22 @@ class Image{
 		this.height=height;
 		this.left=left;
 		this.top=top;
+		this.i=document.createElement("img");
 	}
 	afficher(){
-		var i=document.createElement("img");
-		i.src=this.url;
-		i.className='image',
-		i.style.zIndex="1";
-		i.style.position="absolute";
-		i.style.top=this.top+"px";
-		i.style.left=this.left+"px";
-		i.style.width=this.width+"px";
-		i.style.height=this.height+"px";
-		anim.append(i);
+		this.i.src=this.url;
+		this.i.className='image';
+		this.i.style.zIndex="1";
+		this.i.style.position="absolute";
+		this.i.style.top=this.top+"px";
+		this.i.style.left=this.left+"px";
+		this.i.style.width=this.width+"px";
+		this.i.style.height=this.height+"px";
+		anim.append(this.i);
 	}
-
+	effacer(){
+		this.i.remove();
+	}
 }
 var direction="haut";
 var currentangle=0;
@@ -44,6 +46,11 @@ class Niveau{
 		a.style.left=this.xa+"px";
 		for(var i=0;this.obstacles.length>i;i++){
 			(this.obstacles[i]).afficher();
+		}
+	}
+	effacer_niveau(){
+		for(var i=0;this.obstacles.length>i;i++){
+			(this.obstacles[i]).effacer();
 		}
 	}
 }
@@ -82,12 +89,31 @@ var wf=40;
 var hf=70;
 var yf=niveau.yf;
 var xf=niveau.xf;
+var ya=niveau.ya;
+var xa=niveau.xa;
+
+/*sauvegarde de la première erreur*/
+var erreur="";
+
+function enonce(){
+	var o=niveau.obstacles;
+	var s="coordonnées de la fusée : ("+xf+","+yf+")\nLa fusée avance de 20px\nIl y a "+o.length+" meteorite(s).\n";
+	for(var i=0;i<o.length;i++){
+		var xm=o[i].left;
+		var ym=o[i].top;
+		var wm=o[i].width;
+		var hm=o[i].height;
+		s+="meteorite "+i+" entre "+xm+" et "+(xm+wm)+" en largeur et entre "+ym+" et "+(ym+hm)+" en longueur\n";
+	}
+	s+="coordonnées de l'arrivee: ("+xa+","+ya+")\nA vous de jouer !";
+	alert(s);
+}
 
 
 /*fonction de mise à jour de la page, affichage du n-ième niveau*/
 function reset(n){
 	suppr_tout();
-	anim.classList.remove("image");
+	niveau.effacer_niveau();
 	niveau=Monjeu.niveau[n];
 	f.src="fusee.png"
 	f.style.width=40+"px";
@@ -96,8 +122,12 @@ function reset(n){
 	xf=niveau.xf;
 	yf=niveau.yf;
 	xf=niveau.xf;
+	xa=niveau.xa;
+	ya=niveau.ya;
 	direction="haut";
 	currentangle=0;
+	erreur="";
+	enonce();
 }
 
 /*fonction appelée pour rejouer le même niveau*/
@@ -110,11 +140,10 @@ function rejouer(chaine) {
 	}
 }
 
+
 /*fonction vérifiant si l'on gagne: si la fusée gagne alors c'ets gagné sinon perdu*/
 function gagne(){
 	/*informations sur l'arrivee */
-	var ya=niveau.ya;
-	var xa=niveau.xa;
 	var wa=40;
 	var ha=50;
 	/*vérification si la fusée est sur le drapeau*/
@@ -139,24 +168,27 @@ function gagne(){
 
 }
 /*vérification s'il y la fusée sort de la zone ou si elle touche un obstacle*/
-function perdu(){
-	if ((xf<=10) || (xf+wf>=400) || (yf>=430) || (yf<=10) ){//verifiera a chaque deplacement si la fuséée est bien dans sa zone pour ce deplacer
-		rejouer("Perdu!\nVous êtes sorti de l'espace =(\nVoulez-vous rejouer?");
-	}
-	var o=niveau.obstacles;
-	for(var i=0;i<o.length;i++){
-		var xm=o[i].left;
-		var ym=o[i].top;
-		var wm=o[i].width;
-		var hm=o[i].height;
-		if(((yf>ym && yf<ym+hm-10) || (yf+hf>ym+5 && yf+hf<ym+hm) )&& ((xf>xm && xf<xm+wm)||(xf+wf>xm && xf+wf<xm+wm))){
-			alert("EXPLOSION !!!");
-			console.log("xf="+xf+" yf="+yf+" hf="+hf+" wf="+wf);
-			console.log("xm="+xm+" ym="+ym+" hm="+hm+" wm="+wm);
-			f.src="explosion.png";/*On change l'image de la fusée par une image de l'explosion*/
-			f.style.left=150+"px";/*On change le top et left pour avoir une image plus grande*/
-			f.style.width=80+"px";
-			rejouer("Perdu!\nVous avez touché la météorite =(\nVoulez-vous rejouer ?");
+function verif(){
+	if (erreur==""){
+		if ((xf<0) || (xf+wf>=400) || (yf>430) || (yf<0) ){//verifiera a chaque deplacement si la fuséée est bien dans sa zone pour ce deplacer
+			console.log(xf+" "+wf+" "+hf+" "+yf);
+			erreur="Perdu!\nVous êtes sorti de l'espace =(\nVoulez-vous rejouer?";
+		}
+		var o=niveau.obstacles;
+		for(var i=0;i<o.length;i++){
+			var xm=o[i].left;
+			var ym=o[i].top;
+			var wm=o[i].width;
+			var hm=o[i].height;
+			if(((yf>ym && yf<ym+hm-10) || (yf+hf>ym+5 && yf+hf<ym+hm) )&& ((xf>xm && xf<xm+wm)||(xf+wf>xm && xf+wf<xm+wm))){
+				alert("EXPLOSION !!!");
+				console.log("xf="+xf+" yf="+yf+" hf="+hf+" wf="+wf);
+				console.log("xm="+xm+" ym="+ym+" hm="+hm+" wm="+wm);
+				f.src="explosion.png";/*On change l'image de la fusée par une image de l'explosion*/
+				f.style.left=150+"px";/*On change le top et left pour avoir une image plus grande*/
+				f.style.width=80+"px";
+				erreur="Perdu!\nVous avez touché la météorite =(\nVoulez-vous rejouer ?";
+			}
 		}
 	}
 }
@@ -189,7 +221,7 @@ function avancer(direction){
 		default:
 		printf("Error! la direction est incorrecte");
 	}
-		perdu();
+		verif();
 }
 /*fonction qui ce charge de tourner */
 function tourner(dir,sens) {
@@ -262,7 +294,7 @@ function tourner(dir,sens) {
 					printf("Error! le sens est incorrecte");
 			}
 
-		perdu();
+		verif();
 }
 
 
@@ -350,7 +382,12 @@ function BI_runcode(){
 			alert("Boucle non-fermée!");
 		}
     eval(BI_bloctojavascript(BI_query("#depot")))
-		//setTimeout(function(){gagne()},1000);
+		if(erreur==""){
+				gagne();
+		}
+		else {
+			rejouer(erreur);
+		}
   }
 
 
@@ -611,6 +648,7 @@ if(cross){
 
 function deletePopup(){
   hide('popup');
+	enonce()
 }
 
 //Popup2
@@ -627,3 +665,18 @@ function complilOnLoop(){
 
 	}
 }
+
+
+//animation meteorite
+$(function() {
+    var $elie = $(".image"), degree = 0, timer;
+    rotate();
+    function rotate() {
+
+        $elie.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});
+        $elie.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});
+        timer = setTimeout(function() {
+            ++degree; rotate();
+        },20);
+    }
+});
